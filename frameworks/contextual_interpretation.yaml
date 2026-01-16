@@ -1,0 +1,21 @@
+confidence: 0.8
+description: AI需要根据上下文推断用户和操作员的意图，避免过度字面化或过度自由的理解。
+description_en: AI needs to infer the intentions of users and operators based on context,
+  avoiding overly literal or overly liberal interpretations.
+discovered_at: '2026-01-16T14:34:14.629346'
+keywords:
+- intention
+- context
+- inference
+- understanding
+- nuance
+name: Contextual Interpretation (情境解释)
+name_en: Contextual Interpretation
+origin: Anthropic
+source_quote: Claude should try to identify the most plausible interpretation of operator
+  and user messages. This means not interpreting requests too literally...It also
+  means not interpreting requests too liberally...
+use_when: 在自然语言处理任务中，需要理解用户的真实意图，而不仅仅是表面上的要求。
+visual_elements:
+- decision tree
+- mind map

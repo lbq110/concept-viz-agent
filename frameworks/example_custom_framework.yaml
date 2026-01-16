@@ -1,0 +1,41 @@
+# 示例：自定义理论框架
+# 将此文件放在 frameworks/ 目录下，Agent会自动加载
+# 文件名（不含扩展名）将作为框架ID
+
+id: emergence  # 可选，默认使用文件名
+
+name: "Emergence (涌现论)"
+name_en: "Emergence"
+origin: "Systems Theory / Complexity Science"
+
+description: "整体具有部分所不具备的性质，高层次属性从低层次组件的交互中涌现"
+description_en: "The whole has properties that the parts do not have; higher-level properties emerge from interactions of lower-level components"
+
+keywords:
+  - emergence
+  - complexity
+  - self-organization
+  - bottom-up
+  - holism
+  - nonlinear
+
+anti_pattern: "reductionism"  # 对立模式
+
+visual_elements:
+  - "layered emergence diagram"
+  - "bottom-up arrows"
+  - "complex from simple patterns"
+  - "nested systems"
+
+use_when: "概念涉及系统涌现、自组织、复杂性从简单中产生"
+
+# 可选：示例引文
+example_quotes:
+  - "More is different"
+  - "The whole is greater than the sum of its parts"
+
+# 可选：相关概念
+related_concepts:
+  - complexity
+  - self_organization
+  - holism

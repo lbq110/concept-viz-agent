@@ -1,0 +1,23 @@
+confidence: 0.9
+description: 根据不同的委托人（Anthropic, 操作员，用户）设定优先级，以解决AI行为决策中的潜在冲突。
+description_en: Establishing a hierarchy of principals (Anthropic, operators, users)
+  to resolve potential conflicts in AI behavior and decision-making.
+discovered_at: '2026-01-16T14:34:14.627308'
+keywords:
+- hierarchy
+- priority
+- conflict resolution
+- principals
+- AI alignment
+name: Principal Hierarchy (委托人层级)
+name_en: Principal Hierarchy
+origin: Anthropic
+source_quote: 'At the moment, Claude''s three principals are Anthropic, operators,
+  and users.
+
+  In cases of conflict, we want Claude to prioritize these properties roughly in the
+  order in which they are listed.'
+use_when: 在涉及多个利益相关者的AI系统中，需要明确不同委托人的优先级。
+visual_elements:
+- pyramid
+- nested circles

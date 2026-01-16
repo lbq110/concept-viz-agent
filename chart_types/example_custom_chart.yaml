@@ -1,0 +1,41 @@
+# 示例：自定义图表类型
+# 将此文件放在 chart_types/ 目录下，Agent会自动加载
+
+id: sankey  # 可选，默认使用文件名
+
+name: "桑基图"
+name_en: "Sankey Diagram"
+
+description: "展示流量、能量或资源的流动和转换"
+
+best_for:
+  - flow
+  - transfer
+  - conversion
+  - resource allocation
+  - energy flow
+
+template: "Sankey diagram showing flow from sources to destinations with width representing quantity"
+
+layout: "left-to-right flow"
+
+elements:
+  - "source nodes on left"
+  - "destination nodes on right"
+  - "flow bands with varying width"
+  - "labels with quantities"
+  - "color coding by category"
+
+# 可选：提示词模板片段
+prompt_snippet: |
+  Sankey diagram visualization showing flow relationships.
+  Left side: source nodes ({sources})
+  Right side: destination nodes ({destinations})
+  Flow bands connect sources to destinations, with band width proportional to flow quantity.
+  Color-coded by category for clarity.
+
+# 可选：示例场景
+example_scenarios:
+  - "能源流动分析"
+  - "资金分配可视化"
+  - "用户转化漏斗"
