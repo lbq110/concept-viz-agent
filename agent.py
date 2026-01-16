@@ -82,10 +82,13 @@ class ConceptVisualizerAgent:
     🎓 从文章中发现新理论框架并自动扩充框架库
     这是Agent的"博学家"能力核心
 
-/learn <示例文件夹>
+/learn <示例文件夹> [--no-verify] [--threshold=70]
     📚 从示例学习：分析文件夹中的文章+图片
     自动提取并添加新的 frameworks、charts、styles
+    包含闭环验证：正向生成 → 比较 → 确认后保存
     示例: /learn ./examples/soul_document
+    跳过验证: /learn ./examples --no-verify
+    自定义阈值: /learn ./examples --threshold=80
 
 /analyze <文章路径或文本>
     分析文章，提取核心概念和关键引文
@@ -390,11 +393,31 @@ class ConceptVisualizerAgent:
         # Learn (从示例学习)
         if cmd == "learn":
             if not args:
-                print("请提供示例文件夹路径: /learn <文件夹路径>")
+                print("请提供示例文件夹路径: /learn <文件夹路径> [--no-verify] [--threshold=70]")
                 print("文件夹应包含: 1个文章文件(.md/.txt) + 多张生成的图片(.jpg/.png)")
+                print("\n选项:")
+                print("  --no-verify      跳过闭环验证，直接保存学习结果")
+                print("  --threshold=N    设置验证通过阈值 (默认70)")
                 return True
 
-            result = self.skills["learn"].run(args)
+            # 解析参数
+            parts = args.split()
+            folder_path = parts[0]
+            verify = True
+            threshold = 70
+
+            for part in parts[1:]:
+                if part == "--no-verify":
+                    verify = False
+                elif part.startswith("--threshold="):
+                    try:
+                        threshold = int(part.split("=")[1])
+                    except:
+                        pass
+
+            # 创建带参数的技能实例
+            learn_skill = LearnExampleSkill(verify=verify, pass_threshold=threshold)
+            result = learn_skill.run(folder_path)
             self.context["learn"] = result
 
             if "error" in result:
@@ -404,6 +427,22 @@ class ConceptVisualizerAgent:
                 notes = result.get("analysis", {}).get("analysis_notes", "")
                 if notes:
                     print(f"\n📝 分析备注: {notes}")
+
+                # 显示验证结果
+                verification = result.get("verification", {})
+                if not verification.get("skipped"):
+                    if verification.get("passed"):
+                        print(f"\n✓ 验证通过")
+                        analysis = verification.get("analysis", {})
+                        if analysis.get("strengths"):
+                            print(f"  优点: {', '.join(analysis['strengths'])}")
+                    else:
+                        print(f"\n✗ 验证未通过")
+                        analysis = verification.get("analysis", {})
+                        if analysis.get("weaknesses"):
+                            print(f"  问题: {', '.join(analysis['weaknesses'])}")
+                        if analysis.get("suggestions"):
+                            print(f"  建议: {', '.join(analysis['suggestions'])}")
 
             return True
 
