@@ -1,0 +1,351 @@
+"""
+Skill: /learn - 从示例学习
+输入包含文章和生成图片的文件夹，反向分析并扩充 frameworks、charts、styles
+"""
+
+import json
+import base64
+import sys
+from pathlib import Path
+from typing import List, Dict, Tuple
+sys.path.append(str(Path(__file__).parent.parent))
+
+from lib.api import GeminiClient
+from lib.registry import Registry
+
+# 支持的图片格式
+IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.webp'}
+# 支持的文章格式
+ARTICLE_EXTENSIONS = {'.md', '.txt', '.markdown'}
+
+
+ANALYZE_EXAMPLE_PROMPT = """你是一位博学的视觉设计分析专家，精通理论框架、图表类型和视觉风格。
+
+## 任务
+分析这组示例作品（文章 + 生成的概念图），提取其中使用的：
+1. 理论框架 (Frameworks) - 用于解释概念的学术/科学理论
+2. 图表类型 (Chart Types) - 可视化的图表形式
+3. 视觉风格 (Visual Styles) - 整体美学风格
+
+## 输入
+
+### 文章内容
+{article}
+
+### 图片数量
+共 {image_count} 张概念图
+
+## 分析要求
+
+### 1. 理论框架分析
+观察图片中如何解释概念，识别使用的理论框架：
+- 框架名称（中英文）
+- 框架来源（哲学/科学/工程等领域）
+- 核心描述
+- 关键词
+- 视觉表现元素
+- 适用场景
+
+### 2. 图表类型分析
+识别图片中使用的图表形式：
+- 图表名称（中英文）
+- 描述
+- 最适合表达什么
+- 布局方式
+- 核心元素
+
+### 3. 视觉风格分析
+分析整体视觉风格：
+- 风格名称（中英文）
+- 背景特征
+- 配色方案
+- 排版特点
+- 标题风格
+- 整体氛围
+
+## 输出格式
+返回JSON（不要markdown代码块）：
+{{
+    "frameworks": [
+        {{
+            "id": "snake_case_id",
+            "name": "中文名称 (English Name)",
+            "name_en": "English Name",
+            "origin": "来源领域",
+            "description": "详细描述",
+            "description_en": "English description",
+            "keywords": ["关键词1", "关键词2"],
+            "visual_elements": ["视觉元素1", "视觉元素2"],
+            "use_when": "适用场景描述"
+        }}
+    ],
+    "chart_types": [
+        {{
+            "id": "snake_case_id",
+            "name": "中文名称",
+            "name_en": "English Name",
+            "description": "描述",
+            "description_en": "English description",
+            "best_for": ["适用场景1", "适用场景2"],
+            "layout": "布局描述",
+            "elements": ["元素1", "元素2"],
+            "template": "视觉模板描述"
+        }}
+    ],
+    "visual_styles": [
+        {{
+            "id": "snake_case_id",
+            "name": "中文名称",
+            "name_en": "English Name",
+            "description": "风格描述",
+            "background": "背景描述",
+            "colors": {{
+                "primary": "主色",
+                "secondary": "次色",
+                "accent": "强调色",
+                "text": "文字色"
+            }},
+            "typography": {{
+                "title": "标题风格",
+                "body": "正文风格"
+            }},
+            "characteristics": ["特征1", "特征2"]
+        }}
+    ],
+    "analysis_notes": "分析备注，说明这组作品的整体特点"
+}}
+"""
+
+
+class LearnExampleSkill:
+    """从示例学习技能"""
+
+    name = "learn"
+    description = "从示例文件夹学习新的frameworks、charts、styles"
+    usage = "/learn <文件夹路径>"
+
+    def __init__(self):
+        self.client = GeminiClient()
+        self.registry = Registry()
+
+    def run(self, folder_path: str) -> dict:
+        """
+        从示例文件夹学习
+
+        Args:
+            folder_path: 包含文章和图片的文件夹路径
+
+        Returns:
+            学习结果
+        """
+        folder = Path(folder_path)
+        if not folder.exists() or not folder.is_dir():
+            return {"error": f"文件夹不存在: {folder_path}"}
+
+        print("=" * 60)
+        print("📚 LEARN FROM EXAMPLE")
+        print("=" * 60)
+        print(f"文件夹: {folder_path}")
+
+        # 1. 查找文章和图片
+        article_path, article_content = self._find_article(folder)
+        image_paths = self._find_images(folder)
+
+        if not article_content:
+            return {"error": "未找到文章文件 (.md, .txt)"}
+
+        if not image_paths:
+            return {"error": "未找到图片文件 (.jpg, .png, .gif, .webp)"}
+
+        print(f"✓ 找到文章: {article_path.name} ({len(article_content)} 字符)")
+        print(f"✓ 找到图片: {len(image_paths)} 张")
+        for img in image_paths:
+            print(f"  - {img.name}")
+
+        # 2. 分析示例
+        print("\n" + "-" * 40)
+        print("🔬 分析示例作品...")
+        print("-" * 40)
+
+        analysis = self._analyze_example(article_content, image_paths)
+
+        if "error" in analysis:
+            return analysis
+
+        # 3. 与现有库比较并学习
+        print("\n" + "-" * 40)
+        print("📖 比较并学习...")
+        print("-" * 40)
+
+        learning_result = self._learn_from_analysis(analysis)
+
+        # 4. 汇总结果
+        result = {
+            "folder": folder_path,
+            "article": str(article_path),
+            "images": [str(p) for p in image_paths],
+            "analysis": analysis,
+            "learning": learning_result,
+            "summary": {
+                "frameworks_added": learning_result.get("frameworks_added", 0),
+                "charts_added": learning_result.get("charts_added", 0),
+                "styles_added": learning_result.get("styles_added", 0),
+                "total_frameworks": len(self.registry.frameworks),
+                "total_charts": len(self.registry.chart_types),
+                "total_styles": len(self.registry.visual_styles)
+            }
+        }
+
+        # 打印结果
+        print("\n" + "=" * 60)
+        print("📊 学习完成!")
+        print("=" * 60)
+        print(f"新增 Frameworks: {result['summary']['frameworks_added']}")
+        print(f"新增 Chart Types: {result['summary']['charts_added']}")
+        print(f"新增 Visual Styles: {result['summary']['styles_added']}")
+        print("-" * 40)
+        print(f"框架库总数: {result['summary']['total_frameworks']}")
+        print(f"图表库总数: {result['summary']['total_charts']}")
+        print(f"风格库总数: {result['summary']['total_styles']}")
+        print("=" * 60)
+
+        return result
+
+    def _find_article(self, folder: Path) -> Tuple[Path, str]:
+        """查找文章文件"""
+        for ext in ARTICLE_EXTENSIONS:
+            for file in folder.glob(f"*{ext}"):
+                try:
+                    content = file.read_text(encoding='utf-8')
+                    if len(content) > 100:  # 至少100字符
+                        return file, content
+                except:
+                    continue
+        return None, None
+
+    def _find_images(self, folder: Path) -> List[Path]:
+        """查找图片文件"""
+        images = []
+        for ext in IMAGE_EXTENSIONS:
+            images.extend(folder.glob(f"*{ext}"))
+            images.extend(folder.glob(f"*{ext.upper()}"))
+        # 按文件名排序
+        return sorted(images, key=lambda p: p.name)
+
+    def _analyze_example(self, article: str, image_paths: List[Path]) -> dict:
+        """使用多模态AI分析示例"""
+        # 构建prompt
+        prompt = ANALYZE_EXAMPLE_PROMPT.format(
+            article=article[:8000],  # 限制文章长度
+            image_count=len(image_paths)
+        )
+
+        # 读取图片并转为base64
+        images_data = []
+        for img_path in image_paths[:10]:  # 最多10张图
+            try:
+                with open(img_path, "rb") as f:
+                    img_bytes = f.read()
+                    img_base64 = base64.b64encode(img_bytes).decode('utf-8')
+
+                    # 确定MIME类型
+                    ext = img_path.suffix.lower()
+                    mime_map = {
+                        '.jpg': 'image/jpeg',
+                        '.jpeg': 'image/jpeg',
+                        '.png': 'image/png',
+                        '.gif': 'image/gif',
+                        '.webp': 'image/webp'
+                    }
+                    mime_type = mime_map.get(ext, 'image/jpeg')
+
+                    images_data.append({
+                        "mime_type": mime_type,
+                        "data": img_base64
+                    })
+                    print(f"  ✓ 加载图片: {img_path.name}")
+            except Exception as e:
+                print(f"  ✗ 加载失败: {img_path.name} - {e}")
+
+        if not images_data:
+            return {"error": "无法加载任何图片"}
+
+        # 调用多模态API
+        try:
+            response = self.client.generate_with_images(prompt, images_data)
+
+            # 解析JSON
+            text = response.strip()
+            if text.startswith("```"):
+                text = text.split("```")[1]
+                if text.startswith("json"):
+                    text = text[4:]
+            text = text.strip()
+
+            return json.loads(text)
+
+        except json.JSONDecodeError as e:
+            print(f"JSON解析错误: {e}")
+            return {"error": f"JSON解析失败: {str(e)}", "raw_response": response}
+        except Exception as e:
+            return {"error": str(e)}
+
+    def _learn_from_analysis(self, analysis: dict) -> dict:
+        """从分析结果中学习新内容"""
+        result = {
+            "frameworks_added": 0,
+            "charts_added": 0,
+            "styles_added": 0,
+            "new_frameworks": [],
+            "new_charts": [],
+            "new_styles": []
+        }
+
+        # 学习新框架
+        for fw in analysis.get("frameworks", []):
+            fw_id = fw.get("id")
+            if fw_id and fw_id not in self.registry.frameworks:
+                self.registry.add_framework(fw_id, fw, persist=True)
+                result["frameworks_added"] += 1
+                result["new_frameworks"].append(fw)
+                print(f"  📚 新增框架: {fw.get('name')} ({fw_id})")
+
+        # 学习新图表类型
+        for chart in analysis.get("chart_types", []):
+            chart_id = chart.get("id")
+            if chart_id and chart_id not in self.registry.chart_types:
+                self.registry.add_chart_type(chart_id, chart, persist=True)
+                result["charts_added"] += 1
+                result["new_charts"].append(chart)
+                print(f"  📊 新增图表: {chart.get('name')} ({chart_id})")
+
+        # 学习新视觉风格
+        for style in analysis.get("visual_styles", []):
+            style_id = style.get("id")
+            if style_id and style_id not in self.registry.visual_styles:
+                self.registry.add_visual_style(style_id, style, persist=True)
+                result["styles_added"] += 1
+                result["new_styles"].append(style)
+                print(f"  🎨 新增风格: {style.get('name')} ({style_id})")
+
+        if result["frameworks_added"] == 0 and result["charts_added"] == 0 and result["styles_added"] == 0:
+            print("  ℹ 未发现新内容，现有库已包含这些知识")
+
+        return result
+
+
+# CLI entry point
+if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python learn_example.py <folder_path>")
+        sys.exit(1)
+
+    skill = LearnExampleSkill()
+    result = skill.run(sys.argv[1])
+
+    if "error" in result:
+        print(f"错误: {result['error']}")
+    else:
+        print(f"\n分析备注: {result['analysis'].get('analysis_notes', 'N/A')}")

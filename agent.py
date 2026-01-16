@@ -24,7 +24,8 @@ from skills import (
     DesignSkill,
     GenerateSkill,
     PipelineSkill,
-    DiscoverSkill
+    DiscoverSkill,
+    LearnExampleSkill
 )
 from lib.registry import registry
 from lib.api import ProviderFactory
@@ -41,6 +42,7 @@ class ConceptVisualizerAgent:
             "generate": GenerateSkill(),
             "pipeline": PipelineSkill(),
             "discover": DiscoverSkill(),
+            "learn": LearnExampleSkill(),
         }
 
         self.registry = registry
@@ -79,6 +81,11 @@ class ConceptVisualizerAgent:
 /discover <文章路径>
     🎓 从文章中发现新理论框架并自动扩充框架库
     这是Agent的"博学家"能力核心
+
+/learn <示例文件夹>
+    📚 从示例学习：分析文件夹中的文章+图片
+    自动提取并添加新的 frameworks、charts、styles
+    示例: /learn ./examples/soul_document
 
 /analyze <文章路径或文本>
     分析文章，提取核心概念和关键引文
@@ -124,8 +131,9 @@ class ConceptVisualizerAgent:
 💡 博学家进化之路:
 1. 每次 /pipeline 自动从文章中学习新框架
 2. 单独使用 /discover 专注于框架发现
-3. 框架自动保存到 frameworks/ 目录
-4. 知识库随着阅读不断扩充
+3. 使用 /learn 从示例作品反向学习 (frameworks + charts + styles)
+4. 框架自动保存到 frameworks/、chart_types/、visual_styles/ 目录
+5. 知识库随着阅读不断扩充
 """
         print(help_text)
 
@@ -377,6 +385,26 @@ class ConceptVisualizerAgent:
 
             if "error" not in result:
                 print(self.skills["discover"].format_output(result))
+            return True
+
+        # Learn (从示例学习)
+        if cmd == "learn":
+            if not args:
+                print("请提供示例文件夹路径: /learn <文件夹路径>")
+                print("文件夹应包含: 1个文章文件(.md/.txt) + 多张生成的图片(.jpg/.png)")
+                return True
+
+            result = self.skills["learn"].run(args)
+            self.context["learn"] = result
+
+            if "error" in result:
+                print(f"❌ 错误: {result['error']}")
+            else:
+                # 显示分析备注
+                notes = result.get("analysis", {}).get("analysis_notes", "")
+                if notes:
+                    print(f"\n📝 分析备注: {notes}")
+
             return True
 
         # Pipeline

@@ -124,6 +124,45 @@ class GoogleProvider(BaseProvider):
 
         return {"success": False, "error": "No image in response"}
 
+    def generate_with_images(self, prompt: str, images: list, model: str = None) -> str:
+        """多模态生成：文本+图像输入"""
+        model = model or self.config.get("text_model", "gemini-2.0-flash-exp")
+        url = f"{self.base_url}/models/{model}:generateContent"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-goog-api-key": self.api_key
+        }
+
+        # 构建多模态内容
+        parts = [{"text": prompt}]
+        for img in images:
+            parts.append({
+                "inline_data": {
+                    "mime_type": img.get("mime_type", "image/jpeg"),
+                    "data": img.get("data")
+                }
+            })
+
+        payload = {
+            "contents": [{"parts": parts}]
+        }
+
+        response = requests.post(url, headers=headers, json=payload, timeout=180)
+
+        if response.status_code != 200:
+            raise Exception(f"Google API Error: {response.status_code} - {response.text[:500]}")
+
+        data = response.json()
+
+        if "candidates" in data and len(data["candidates"]) > 0:
+            parts = data["candidates"][0]["content"]["parts"]
+            for part in parts:
+                if "text" in part:
+                    return part["text"]
+
+        return ""
+
 
 class OpenAIProvider(BaseProvider):
     """OpenAI 提供商"""
@@ -409,6 +448,19 @@ class GeminiClient:
         if not provider:
             raise Exception("No image provider available")
         return provider.generate_image(prompt, output_path, model)
+
+    def generate_with_images(self, prompt: str, images: list, model: str = None) -> str:
+        """多模态生成：文本+图像输入"""
+        provider = self.text_provider
+        if not provider:
+            raise Exception("No text provider available")
+
+        # 检查是否支持多模态
+        if hasattr(provider, 'generate_with_images'):
+            return provider.generate_with_images(prompt, images, model)
+        else:
+            # 降级为纯文本
+            return provider.generate_text(prompt + "\n\n[Note: Images provided but not supported by this provider]", model)
 
     def set_text_provider(self, provider_id: str):
         """设置文本提供商"""

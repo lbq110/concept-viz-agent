@@ -13,11 +13,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 FRAMEWORKS_DIR = BASE_DIR / "frameworks"      # 理论框架目录
 CHART_TYPES_DIR = BASE_DIR / "chart_types"    # 图表类型目录
+VISUAL_STYLES_DIR = BASE_DIR / "visual_styles"  # 视觉风格目录
 PROVIDERS_DIR = BASE_DIR / "providers"        # 模型提供商目录
 OUTPUT_DIR = BASE_DIR / "output"              # 输出目录
 
 # 确保目录存在
-for d in [FRAMEWORKS_DIR, CHART_TYPES_DIR, PROVIDERS_DIR, OUTPUT_DIR]:
+for d in [FRAMEWORKS_DIR, CHART_TYPES_DIR, VISUAL_STYLES_DIR, PROVIDERS_DIR, OUTPUT_DIR]:
     d.mkdir(exist_ok=True)
 
 # =============================================================================

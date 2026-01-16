@@ -8,6 +8,7 @@ from .design import DesignSkill
 from .generate import GenerateSkill
 from .pipeline import PipelineSkill
 from .discover import DiscoverSkill
+from .learn_example import LearnExampleSkill
 
 __all__ = [
     "AnalyzeSkill",
@@ -15,5 +16,6 @@ __all__ = [
     "DesignSkill",
     "GenerateSkill",
     "PipelineSkill",
-    "DiscoverSkill"
+    "DiscoverSkill",
+    "LearnExampleSkill"
 ]

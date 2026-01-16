@@ -12,7 +12,7 @@ import sys
 sys.path.append(str(Path(__file__).parent.parent))
 
 from config import (
-    FRAMEWORKS_DIR, CHART_TYPES_DIR, PROVIDERS_DIR,
+    FRAMEWORKS_DIR, CHART_TYPES_DIR, PROVIDERS_DIR, VISUAL_STYLES_DIR,
     DEFAULT_FRAMEWORKS, DEFAULT_CHART_TYPES, PROVIDERS,
     VISUAL_STYLES, DEFAULT_VISUAL_STYLE
 )
@@ -89,6 +89,8 @@ class Registry:
 
         # 加载视觉风格
         self.visual_styles = VISUAL_STYLES.copy()
+        custom_styles = self._load_yaml_files(VISUAL_STYLES_DIR)
+        self.visual_styles.update(custom_styles)
 
     def reload(self):
         """重新加载所有配置"""
@@ -213,9 +215,14 @@ class Registry:
         """列出所有视觉风格"""
         return self.visual_styles
 
-    def add_visual_style(self, style_id: str, style_data: Dict):
+    def add_visual_style(self, style_id: str, style_data: Dict, persist: bool = False):
         """添加新视觉风格"""
         self.visual_styles[style_id] = style_data
+
+        if persist:
+            file_path = VISUAL_STYLES_DIR / f"{style_id}.yaml"
+            with open(file_path, "w", encoding="utf-8") as f:
+                yaml.dump(style_data, f, allow_unicode=True, default_flow_style=False)
 
     # =========================================================================
     # 导出/导入
