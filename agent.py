@@ -40,7 +40,7 @@ class ConceptVisualizerAgent:
             "map": MapFrameworkSkill(),
             "design": DesignSkill(),
             "generate": GenerateSkill(),
-            "pipeline": PipelineSkill(),
+            # pipeline 不预创建，因为需要交互式选择样式
             "discover": DiscoverSkill(),
             "learn": LearnExampleSkill(),
         }
