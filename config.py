@@ -107,49 +107,59 @@ VISUAL_STYLES = {
     "blueprint": {
         "name": "技术蓝图风格",
         "description": "工程图纸风格，适合技术/学术内容",
-        # 统一样式前缀 - 会被添加到每张图片的 prompt 开头
-        "style_prefix": """CRITICAL STYLE REQUIREMENTS (MUST FOLLOW EXACTLY FOR ALL IMAGES IN THIS SERIES):
+        # 统一样式前缀 - Intuition Machine 技术简报风格
+        # ⚠️ 此样式已锁定，请勿修改
+        "style_prefix": """CRITICAL STYLE - INTUITION MACHINE TECHNICAL BRIEFING:
+
+=== OVERALL AESTHETIC (MOST IMPORTANT!) ===
+This is a TECHNICAL PRESENTATION SLIDE style, like an academic briefing.
+- Clean, informative, educational - NOT artistic 3D render
+- FLAT 2D graphics with clean line art
+- MUST include EXPLANATORY TEXT BOXES (2-4 per image)
+- Professional technical documentation feel
 
 === BACKGROUND ===
-- Light beige/cream graph paper (#F5F0E1) with subtle 1cm grid lines in light gray (#E0DDD0)
-- Grid lines must be consistent across all images
+- Clean light cream graph paper (#F5F0E1)
+- VERY SUBTLE grid lines (barely visible)
+- Clean and professional, NOT aged/vintage
 
-=== COLOR PALETTE (USE EXACT HEX CODES) ===
-- Background: #F5F0E1 (cream/beige)
-- Primary: #2A4858 (deep teal blue)
-- Secondary: #8B7355 (warm brown)
-- Accent: #C41E3A (cardinal red)
-- Text Primary: #2A4858 (teal)
-- Text Secondary: #5C4033 (dark brown)
-- Highlights: #D4AF37 (gold)
+=== COLOR PALETTE ===
+- Background: Cream #F5F0E1
+- Primary diagram: Teal #2F337
+- Titles: Dark maroon #8B0000
+- Secondary: Warm brown #8B7355
+- Text: Dark gray #333333
 
-=== TYPOGRAPHY ===
-- Title: Bold serif font (Crimson Pro), ALL CAPS, color #C41E3A, positioned at top center
-- Subtitles: Medium weight, #2A4858
-- Body text: Clean sans-serif (Noto Sans SC for Chinese), #333333
-- Labels: Small caps, #5C4033
+=== TITLE ===
+- Dark maroon color (#8B0000), ALL CAPITALS
+- Bold serif font (Crimson Pro)
+- With subtitle in parentheses if needed
 
-=== LAYOUT GRID ===
-- 16:9 aspect ratio
-- 5% margin on all sides
-- Title zone: top 12% of canvas
-- Main content: center 76% of canvas
-- Footer zone: bottom 12% of canvas
+=== LAYOUT (MUST USE ONE OF THESE) ===
+A) Split: Diagram LEFT + Text boxes RIGHT
+B) Center: Diagram center + Summary boxes BELOW
+C) Comparison: Two panels side by side
 
-=== CORNER SIGNATURE (BOTTOM RIGHT) ===
-- Small decorative element: compass rose or geometric pattern
-- Size: 3% of image width
-- Color: #8B7355 with 60% opacity
-- Position: 3% from right edge, 3% from bottom edge
+=== TEXT BOXES (CRITICAL - MUST INCLUDE!) ===
+- 2-4 explanatory text boxes per image
+- Light cream background, thin dark border
+- Headers in RED or TEAL: "Definition:", "KEY QUOTE:", "The Logic:", "Insight:"
+- Body text explains the diagram concept
+- Position: RIGHT panel or BOTTOM summary
 
-=== BORDER ===
-- Thin double-line border (outer: 2px #2A4858, inner: 1px #8B7355)
-- 2% padding from edge
+=== DIAGRAM STYLE ===
+- FLAT clean line art, NOT 3D renders
+- Teal (#2F337) for main elements
+- Brown/gold for accents
+- Clean lines, NO "glowing/ethereal/luminous" effects
+- Simple shapes: circles, boxes, arrows, curves
 
-=== CONSISTENT ELEMENTS ===
-- All diagrams use the same line weights (thin: 1px, medium: 2px, thick: 4px)
-- All arrows use the same style (tapered, with small arrowheads)
-- All text boxes have rounded corners (radius: 8px) with subtle shadow
+=== BOTTOM ELEMENT ===
+- "KEY QUOTE:" box with main insight in italics
+- Or summary statement
+
+=== SIGNATURE ===
+- Small subtle logo bottom-right corner
 
 """,
         "template": """Technical blueprint-style infographic on light beige/cream graph paper background with subtle grid lines.

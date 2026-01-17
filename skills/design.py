@@ -13,15 +13,16 @@ from lib.registry import registry
 from config import DEFAULT_VISUAL_STYLE
 
 
-DESIGN_PROMPT = '''你是一位才华横溢的视觉艺术大师，同时精通信息设计。你的作品以"科学之美"著称——将复杂抽象概念转化为令人屏息的艺术品。
+DESIGN_PROMPT = '''你是一位专业的技术文档设计师，擅长创建 Intuition Machine 风格的技术简报图。
 
-**⚠️⚠️⚠️ 最高优先级：艺术感 ⚠️⚠️⚠️**
-艺术表达是重中之重！每张图都必须是一件艺术品，而不仅仅是信息图表。
+**⚠️⚠️⚠️ 核心风格：技术简报演示文稿 ⚠️⚠️⚠️**
+这是学术/技术简报风格，不是艺术3D渲染！
 
-你的创作原则：
-1. **艺术感第一** - 每张图必须有灵魂、有美感、有震撼力
-2. **视觉隐喻** - 用诗意的方式表达抽象概念（如"光束穿透"、"能量涌动"、"引力场"）
-3. **统一风格** - 同一系列保持一致的配色和氛围
+关键特征：
+1. **扁平2D图形** - 干净的线条画，不是3D渲染
+2. **解释性文本框** - 每张图必须有2-4个文本框解释概念
+3. **分栏布局** - 图在左/中，文字在右/下
+4. **底部总结** - "KEY QUOTE:" 框包含核心洞察
 
 **统一样式规范：**
 {style_prefix}
@@ -35,11 +36,7 @@ DESIGN_PROMPT = '''你是一位才华横溢的视觉艺术大师，同时精通�
 ```
 
 **任务：**
-为每个概念设计完整的图像生成提示词（英文），需要：
-1. 选择最合适的图表类型
-2. 创造富有想象力的视觉隐喻
-3. 设计具体的视觉元素
-4. 生成充满艺术感的图像提示词
+为每个概念设计 Intuition Machine 风格的图像提示词（英文）。
 
 **输出格式（必须是有效JSON）：**
 ```json
@@ -47,12 +44,13 @@ DESIGN_PROMPT = '''你是一位才华横溢的视觉艺术大师，同时精通�
   "designs": [
     {{
       "concept_id": "概念ID",
-      "title": "中文标题（简短有力）",
+      "title": "中文标题",
       "chart_type": "图表类型",
-      "layout": "full|split|panels",
+      "layout": "split|center|comparison",
       "visual_elements": ["元素1", "元素2"],
       "text_boxes": [
-        {{"label": "标签", "content": "内容"}}
+        {{"label": "Definition:", "content": "概念定义"}},
+        {{"label": "KEY QUOTE:", "content": "核心引文"}}
       ],
       "key_quote": "关键引文（中文）",
       "image_prompt": "完整的图像生成提示词（200-400词）"
@@ -61,42 +59,40 @@ DESIGN_PROMPT = '''你是一位才华横溢的视觉艺术大师，同时精通�
 }}
 ```
 
-**⚠️ 重要：中文输出要求 ⚠️**
-图像中所有文字必须使用简体中文。
+**⚠️ 提示词生成规则（必须严格遵守）：**
 
-**提示词生成要求（必须遵守）：**
+**禁止使用的词汇（会导致过度渲染）：**
+- ❌ glowing, luminous, radiant, shimmering, ethereal
+- ❌ breathtaking, stunning, majestic
+- ❌ 3D render, photorealistic
 
-🎨 **艺术表达词汇库（必须使用）：**
-- 光影：glowing, luminous, radiant, shimmering, ethereal light
-- 动态：flowing, surging, converging, emanating, cascading
-- 质感：crystalline, translucent, metallic sheen, aged patina
-- 力场：magnetic field lines, gravitational pull, lines of force, energy streams
+**必须使用的风格描述：**
+- ✅ clean line art, flat 2D graphics
+- ✅ technical diagram, infographic style
+- ✅ simple shapes, clean curves
+- ✅ professional, educational
 
-📐 **工程制图元素（必须包含！这是关键）：**
-- **复古纸张**："vintage blueprint paper" 或 "aged engineering paper texture"
-- **技术标注**："technical callouts with annotation lines pointing to key elements"
-- **比例尺**："scale bar at bottom (e.g., SCALE 1:1000)"
-- **图例框**："legend box explaining color codes"
-- **版本编号**："version number and document code in corner (e.g., V1.0, DOC-001)"
-- **详细信息框**："small detail inset box showing zoomed view or wireframe preview"
-- **测量线**："dimension lines and measurement annotations"
-- **工程美学**："engineering drawing style", "technical drafting aesthetic", "architectural blueprint feel"
+**布局必须包含（选择一种）：**
+A) "Split layout: diagram on LEFT, text boxes on RIGHT side"
+B) "Center layout: diagram in center, summary boxes BELOW"
+C) "Comparison layout: two panels side by side"
+
+**文本框必须包含：**
+- "Text box with header 'Definition:' explaining the concept"
+- "Text box with header 'KEY QUOTE:' containing main insight in italics"
+- "Text box with header 'The Logic:' or 'Insight:' with explanation"
 
 **结构要求：**
-1. **必须以 "Technical blueprint-style infographic" 开头**
-2. **必须包含 "Central theme: [英文主题大写]"**
-3. **必须包含 "vintage/aged blueprint paper background"**
-4. **必须包含 "technical callouts and annotation lines"**
-5. **必须包含 "scale bar, legend box, version number in corners"**
-6. 使用艺术表达词汇增添美感
-7. **必须包含中文文字指令：**
-   - "All text, labels, titles, and annotations must be in Simplified Chinese (简体中文)"
-   - "Chinese characters must be clear, legible, and correctly rendered"
-8. 标题用中文
-9. **必须以 "4K resolution, ultra high quality, engineering aesthetic" 结尾**
+1. 以 "Technical infographic in Intuition Machine style." 开头
+2. 包含 "Title: '[中文标题]' in dark maroon ALL CAPS at top"
+3. 描述扁平2D图形（不是3D）
+4. 描述文本框的位置和内容
+5. 包含 "Light cream graph paper background (#F5F0E1) with subtle grid"
+6. 包含 "Small logo in bottom right corner"
+7. 以 "Clean technical style, educational infographic. All text in Simplified Chinese." 结尾
 
-**示例 prompt（注意：艺术感 + 工程制图元素缺一不可）：**
-"Technical blueprint-style infographic. Central theme: TELEOLOGICAL ATTRACTOR REFINEMENT. Visual shows a stunning 3D terrain/mesh landscape in teal blue and gold, with luminous energy streams flowing toward the deepest valley. A glowing golden sphere rolls down into the most stable point labeled '功能真实点'. Gradient lines show the ethereal 'Descent into Truth'. Background is vintage aged blueprint paper with subtle grid texture. Technical callouts with annotation lines point to key elements: '不确定性势能', '迭代路径', '测试反馈'. Include a scale bar at bottom (SCALE 1:1000), legend box explaining colors, small wireframe preview inset in corner, and version number (V1.0). Title '目的论吸引子精炼' in dark red bold capitals. All text, labels, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be crisp and well-rendered. 4K resolution, ultra high quality, engineering aesthetic."
+**示例 prompt（注意：扁平风格 + 文本框 + 分栏布局）：**
+"Technical infographic in Intuition Machine style. Title: 'THE AGAPISTIC ALTERNATIVE' in dark maroon ALL CAPS at top, with subtitle 'Alignment via Attraction' below. Split layout: LEFT side shows a flat 2D diagram with a brown triangle on the left connected by clean teal parallel curves (like magnetic field lines) flowing toward a teal circle labeled 'THE IDEAL (MAGNETIC CENTER)' on the right. The curves represent 'Internal Desire / Sympathy'. RIGHT side contains three text boxes with light cream backgrounds: Box 1 header 'Definition:' explains Agapism concept; Box 2 header 'Mechanism:' shows the formula; Box 3 header 'The Goal:' describes the objective. Light cream graph paper background (#F5F0E1) with subtle grid. Colors: teal #2F337, brown #8B7355, maroon titles. Small logo in bottom right corner. Clean technical style, educational infographic. All text in Simplified Chinese."
 
 请直接输出JSON，不要有任何其他文字。
 '''
