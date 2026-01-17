@@ -109,57 +109,59 @@ VISUAL_STYLES = {
         "description": "工程图纸风格，适合技术/学术内容",
         # 统一样式前缀 - Intuition Machine 技术简报风格
         # ⚠️ 此样式已锁定，请勿修改
-        "style_prefix": """CRITICAL STYLE - INTUITION MACHINE TECHNICAL BRIEFING:
+        "style_prefix": """CRITICAL STYLE - TECHNICAL BLUEPRINT WITH RICH DETAILS:
 
-=== OVERALL AESTHETIC (MOST IMPORTANT!) ===
-This is a TECHNICAL PRESENTATION SLIDE style, like an academic briefing.
-- Clean, informative, educational - NOT artistic 3D render
-- FLAT 2D graphics with clean line art
-- MUST include EXPLANATORY TEXT BOXES (2-4 per image)
-- Professional technical documentation feel
+=== OVERALL AESTHETIC ===
+Professional engineering blueprint with rich visual details.
+- Technical diagram with detailed annotations
+- Paper has subtle texture and character
+- Background includes thematic decorative elements
+- Professional drafting style with measurements
 
-=== BACKGROUND ===
-- Clean light cream graph paper (#F5F0E1)
-- VERY SUBTLE grid lines (barely visible)
-- Clean and professional, NOT aged/vintage
+=== BACKGROUND & PAPER TEXTURE ===
+- Aged cream/beige blueprint paper with SUBTLE paper texture
+- Light creases and slight weathering for authenticity (not too heavy)
+- Subtle grid lines visible
+- IMPORTANT: Add faded thematic background elements related to the concept
+  (e.g., faded circuit patterns for tech topics, faded gears for mechanical topics)
 
 === COLOR PALETTE ===
-- Background: Cream #F5F0E1
+- Background: Aged cream #F5F0E1 with texture
 - Primary diagram: Teal #2F337
 - Titles: Dark maroon #8B0000
-- Secondary: Warm brown #8B7355
-- Text: Dark gray #333333
+- Secondary: Warm brown/gold #8B7355
+- Accent highlights: Subtle cyan glow for key elements
 
 === TITLE ===
-- Dark maroon color (#8B0000), ALL CAPITALS
-- Bold serif font (Crimson Pro)
-- With subtitle in parentheses if needed
+- Dark maroon color (#8B0000), ALL CAPITALS, in brackets like [标题]
+- English subtitle below in smaller text
+- Bold serif font
 
-=== LAYOUT (MUST USE ONE OF THESE) ===
-A) Split: Diagram LEFT + Text boxes RIGHT
-B) Center: Diagram center + Summary boxes BELOW
-C) Comparison: Two panels side by side
-
-=== TEXT BOXES (CRITICAL - MUST INCLUDE!) ===
-- 2-4 explanatory text boxes per image
-- Light cream background, thin dark border
-- Headers in RED or TEAL: "Definition:", "KEY QUOTE:", "The Logic:", "Insight:"
-- Body text explains the diagram concept
-- Position: RIGHT panel or BOTTOM summary
+=== CORNER DECORATIONS (ADD VISUAL RICHNESS) ===
+- Top corners: Technical stamps, watermarks, or classification marks
+- Bottom left: Angle diagrams, measurement references (45° ANGLE, etc.)
+- Bottom right: Professional title block with:
+  - PROJECT name
+  - DRAWING NO: XX-SPEC-001
+  - SCALE: 1:10
+  - REV/DATE info
 
 === DIAGRAM STYLE ===
-- FLAT clean line art, NOT 3D renders
-- Teal (#2F337) for main elements
-- Brown/gold for accents
-- Clean lines, NO "glowing/ethereal/luminous" effects
-- Simple shapes: circles, boxes, arrows, curves
+- Can be 2D or isometric 3D technical illustration
+- Teal (#2F337) for main structural elements
+- Brown/gold for secondary elements
+- Detailed dimension lines with measurements (1200mm, 500mm, etc.)
+- Technical callout lines pointing to labeled parts
+- Small icons and symbols to enrich the visual
+
+=== ANNOTATIONS ===
+- Bilingual labels: English term + Chinese translation
+- Technical measurements with dimension lines
+- Arrow callouts pointing to key features
 
 === BOTTOM ELEMENT ===
-- "KEY QUOTE:" box with main insight in italics
-- Or summary statement
-
-=== SIGNATURE ===
-- Small subtle logo bottom-right corner
+- Professional drafting title block in bottom right corner
+- Contains: Project name, Drawing number, Scale, Revision
 
 """,
         "template": """Technical blueprint-style infographic on light beige/cream graph paper background with subtle grid lines.

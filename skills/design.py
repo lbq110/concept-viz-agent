@@ -61,43 +61,37 @@ DESIGN_PROMPT = '''你是一位专业的技术文档设计师，擅长创建 Int
 
 **⚠️ 提示词生成规则（必须严格遵守）：**
 
-**禁止使用的词汇（会导致过度渲染）：**
-- ❌ glowing, luminous, radiant, shimmering, ethereal
-- ❌ breathtaking, stunning, majestic
-- ❌ 3D render, photorealistic
+**图表风格（可选2D或等轴测3D）：**
+- ✅ 可以使用 isometric 3D technical illustration（等轴测技术插图）
+- ✅ 也可以使用 flat 2D technical diagram
+- ✅ 根据概念选择最合适的表现方式
 
-**必须使用的风格描述：**
-- ✅ clean line art, flat 2D graphics
-- ✅ technical diagram, infographic style
-- ✅ simple shapes, clean curves
-- ✅ professional, educational
-
-**布局必须包含（选择一种）：**
-A) "Split layout: diagram on LEFT, text boxes on RIGHT side"
-B) "Center layout: diagram in center, summary boxes BELOW"
-C) "Comparison layout: two panels side by side"
-
-**文本框必须包含：**
-- "Text box with header 'Definition:' explaining the concept"
-- "Text box with header 'KEY QUOTE:' containing main insight in italics"
-- "Text box with header 'The Logic:' or 'Insight:' with explanation"
+**必须包含的视觉丰富元素：**
+1. **纸张材质**："aged blueprint paper with subtle texture and light creases"
+2. **背景图案**："faded thematic background pattern related to [概念]"（如电路图、齿轮、流程图等，要与主题呼应）
+3. **角落装饰**：
+   - 左上/右上："technical stamps or watermarks"
+   - 左下："angle reference diagrams (45° ANGLE, measurement lines)"
+   - 右下："professional title block with PROJECT, DRAWING NO, SCALE, REV"
+4. **尺寸标注**："dimension lines with measurements (1200mm, 500mm, etc.)"
+5. **双语标签**："bilingual labels (English term + Chinese translation)"
 
 **结构要求：**
-1. 以 "Technical infographic in Intuition Machine style." 开头
-2. 包含 "Title: '[中文标题]' in dark maroon ALL CAPS at top"
-3. 描述扁平2D图形（不是3D）
-4. 描述文本框的位置和内容
-5. 包含 "Light cream graph paper background (#F5F0E1) with subtle grid"
-6. 包含 "Small logo in bottom right corner"
-7. **必须包含中文质量要求：**
+1. 以 "Technical blueprint infographic." 开头
+2. 标题格式："Title: '[中文标题]' in dark maroon ALL CAPS in brackets, with English subtitle below"
+3. 描述主图（2D或等轴测3D技术插图）
+4. 描述背景图案（与主题相关的淡化图案）
+5. 描述角落装饰元素
+6. 包含 "Aged cream blueprint paper (#F5F0E1) with subtle texture and grid"
+7. 包含尺寸标注和双语标签
+8. **必须包含中文质量要求：**
    - "All text in Simplified Chinese (简体中文)"
-   - "Chinese characters must be crystal clear, perfectly formed, and correctly rendered"
-   - "Use clean Chinese fonts like Noto Sans SC"
-8. **必须以以下内容结尾：**
-   "4K ultra-high resolution, sharp details. Clean technical style, educational infographic."
+   - "Chinese characters must be crystal clear, perfectly formed"
+9. **必须以以下内容结尾：**
+   "Professional title block in bottom right corner. 4K ultra-high resolution. Technical blueprint aesthetic."
 
-**示例 prompt（注意：扁平风格 + 文本框 + 分栏布局 + 4K + 中文要求）：**
-"Technical infographic in Intuition Machine style. Title: 'THE AGAPISTIC ALTERNATIVE' in dark maroon ALL CAPS at top, with subtitle 'Alignment via Attraction' below. Split layout: LEFT side shows a flat 2D diagram with a brown triangle on the left connected by clean teal parallel curves (like magnetic field lines) flowing toward a teal circle labeled 'THE IDEAL (MAGNETIC CENTER)' on the right. The curves represent 'Internal Desire / Sympathy'. RIGHT side contains three text boxes with light cream backgrounds: Box 1 header 'Definition:' explains Agapism concept; Box 2 header 'Mechanism:' shows the formula; Box 3 header 'The Goal:' describes the objective. Light cream graph paper background (#F5F0E1) with subtle grid. Colors: teal #2F337, brown #8B7355, maroon titles. Small logo in bottom right corner. All text in Simplified Chinese (简体中文). Chinese characters must be crystal clear, perfectly formed, and correctly rendered. Use clean Chinese fonts like Noto Sans SC. 4K ultra-high resolution, sharp details. Clean technical style, educational infographic."
+**示例 prompt（注意丰富的视觉元素）：**
+"Technical blueprint infographic. Title: '[必然性需求格栅]' in dark maroon ALL CAPS in brackets at top, with English subtitle 'THE ANANCIC LATTICE OF SPECIFICATION' below. Main diagram: isometric 3D technical illustration of an interlocking lattice structure made of teal steel beams and brown wooden connectors, representing structured requirements. Detailed dimension lines show measurements (1200mm, 500mm, 300mm). Bilingual callout labels point to key parts: 'STRUCTURAL CONSTRAINTS 结构约束', 'LOGIC FLOW 逻辑导向', 'CORE DOMAIN 核心领域'. Background: aged cream blueprint paper (#F5F0E1) with subtle texture and light creases. Faded flowchart patterns in background related to process logic. Corner decorations: top-right has technical stamp, bottom-left has 45° angle reference diagram with measurements, bottom-right has professional title block (PROJECT: ANANCIC LATTICE, DRAWING NO: AL-SPEC-001, SCALE: 1:10). Colors: teal #2F337, warm brown #8B7355, maroon titles. All text in Simplified Chinese (简体中文). Chinese characters must be crystal clear, perfectly formed. Professional title block in bottom right corner. 4K ultra-high resolution. Technical blueprint aesthetic."
 
 请直接输出JSON，不要有任何其他文字。
 '''
