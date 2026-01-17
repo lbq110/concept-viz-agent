@@ -46,8 +46,8 @@ PROVIDERS = {
         "api_key_env": "GOOGLE_API_KEY",
         "api_key": os.environ.get("GOOGLE_API_KEY", ""),  # 从环境变量读取
         "base_url": "https://generativelanguage.googleapis.com/v1beta",
-        "text_model": "gemini-2.0-flash-exp",
-        "image_model": "nano-banana-pro-preview",
+        "text_model": "gemini-3-flash-preview",
+        "image_model": "gemini-3-pro-image-preview",
         "enabled": True
     },
     "openai": {
