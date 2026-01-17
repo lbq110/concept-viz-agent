@@ -29,7 +29,7 @@ PROVIDERS = {
     "google": {
         "name": "Google AI Studio",
         "api_key_env": "GOOGLE_API_KEY",
-        "api_key": "AIzaSyAfuNCoPZeVncsGKAzGXuFKycnCCUZCp9Q",  # 默认key，可被环境变量覆盖
+        "api_key": os.environ.get("GOOGLE_API_KEY", ""),  # 从环境变量读取
         "base_url": "https://generativelanguage.googleapis.com/v1beta",
         "text_model": "gemini-2.0-flash-exp",
         "image_model": "nano-banana-pro-preview",
