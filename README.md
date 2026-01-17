@@ -26,13 +26,20 @@ pip install -r requirements.txt
 ### 配置API Key
 
 ```bash
-# Google AI Studio (默认已配置)
-export GOOGLE_API_KEY="your-key"
+# 复制配置模板
+cp .env.example .env
 
-# 可选：其他提供商
-export OPENAI_API_KEY="your-key"
-export ANTHROPIC_API_KEY="your-key"
+# 编辑 .env 文件，填入你的 API Key
+# GOOGLE_API_KEY=your-google-api-key
 ```
+
+或者使用环境变量：
+
+```bash
+export GOOGLE_API_KEY="your-key"
+```
+
+> ⚠️ **安全提示**：`.env` 文件已在 `.gitignore` 中，不会被提交到 Git
 
 ### 使用
 

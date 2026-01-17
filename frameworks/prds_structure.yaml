@@ -1,0 +1,24 @@
+description: 产品需求文档（PRD）结构提供了一个清晰的框架，用于定义产品的目标、功能、特性和行为。它通常包括目标、范围、功能需求、非功能需求、用例、用户故事等部分。结构化的
+  PRD 可确保所有相关方都对产品需求有共同的理解。
+description_en: The Product Requirements Document (PRD) structure provides a clear
+  framework for defining the goals, functions, features, and behavior of a product.
+  It typically includes sections such as goals, scope, functional requirements, non-functional
+  requirements, use cases, user stories, etc. A structured PRD ensures that all stakeholders
+  have a common understanding of the product requirements.
+id: prds_structure
+keywords:
+- 需求
+- 功能
+- 目标
+- 范围
+- 用户故事
+- 用例
+name: 产品需求文档结构 (Product Requirements Document Structure)
+name_en: Product Requirements Document Structure
+origin: 项目管理, 软件工程
+use_when: 明确AI agent的需求和目标，确保其行为符合预期。
+visual_elements:
+- 流程图
+- 表格
+- 分块布局
+- 标题和副标题

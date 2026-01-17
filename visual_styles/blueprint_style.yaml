@@ -1,0 +1,21 @@
+background: 深蓝色
+characteristics:
+- 技术细节
+- 精确测量
+- 工程图纸元素
+- 深蓝色背景
+colors:
+  accent: 红色
+  primary: 白色
+  secondary: 浅蓝色
+  text: 白色
+description: 蓝图风格模仿工程蓝图的视觉效果，使用深蓝色背景、白色线条和技术图纸元素。这种风格给人一种专业、技术和精确的感觉。
+description_en: Blueprint style mimics the visual appearance of engineering blueprints,
+  using a dark blue background, white lines, and technical drawing elements. This
+  style gives a sense of professionalism, technology, and precision.
+id: blueprint_style
+name: 蓝图风格
+name_en: Blueprint Style
+typography:
+  body: 技术图纸字体
+  title: 工程字体

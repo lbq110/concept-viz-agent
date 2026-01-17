@@ -6,6 +6,21 @@ Concept Visualizer Agent - Configuration
 import os
 from pathlib import Path
 
+# 加载 .env 文件
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # 如果没有安装 python-dotenv，尝试手动加载
+    env_file = Path(__file__).parent / ".env"
+    if env_file.exists():
+        with open(env_file) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, value = line.split("=", 1)
+                    os.environ.setdefault(key.strip(), value.strip())
+
 # =============================================================================
 # 路径配置
 # =============================================================================

@@ -1,0 +1,17 @@
+best_for:
+- 展示层级关系
+- 组织结构
+- 分类系统
+description: 层级图用于显示组织结构或分类系统中的层级关系。它以树状结构呈现，根节点位于顶部，子节点位于其下方，依此类推。
+description_en: A hierarchy chart is used to display hierarchical relationships in
+  an organizational structure or classification system. It is presented as a tree
+  structure with the root node at the top and child nodes below it, and so on.
+elements:
+- 节点
+- 连接线
+- 标签
+id: hierarchy_chart
+layout: 树状结构，自上而下
+name: 层级图
+name_en: Hierarchy Chart
+template: 树状结构，节点可以包含图标和文本

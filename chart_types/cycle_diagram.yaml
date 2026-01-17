@@ -1,0 +1,17 @@
+best_for:
+- 展示循环过程
+- 重复事件
+- 反馈循环
+description: 循环图用于表示循环过程或重复事件的序列。它使用箭头连接的圆形或椭圆形节点来表示不同的阶段或步骤。
+description_en: A cycle diagram is used to represent a cyclical process or a sequence
+  of repeating events. It uses circular or elliptical nodes connected by arrows to
+  represent different stages or steps.
+elements:
+- 节点
+- 箭头
+- 标签
+id: cycle_diagram
+layout: 圆形或椭圆形
+name: 循环图
+name_en: Cycle Diagram
+template: 带有方向指示的圆形或椭圆形布局

@@ -1,0 +1,23 @@
+description: 模块化是一种将复杂系统分解为更小、更易于管理和理解的独立模块的设计方法。每个模块执行特定的功能，并且模块之间通过定义明确的接口进行交互。这可以提高代码的可重用性、可维护性和可测试性，并减少复杂性。
+description_en: Modularization is a design approach that breaks down a complex system
+  into smaller, independent modules that are easier to manage and understand. Each
+  module performs a specific function, and the modules interact with each other through
+  well-defined interfaces. This improves code reusability, maintainability, and testability,
+  and reduces complexity.
+id: modularization
+keywords:
+- 模块
+- 独立
+- 接口
+- 复用
+- 维护
+- 测试
+name: 模块化 (Modularization)
+name_en: Modularization
+origin: 软件工程
+use_when: 将大型复杂任务分解为可管理的部分，以便AI可以更有效地处理。
+visual_elements:
+- 层级结构
+- 流程图
+- 分组
+- 独立模块图标

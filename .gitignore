@@ -35,6 +35,7 @@ env/
 # Output directories
 output/
 test_output/
+test_*/
 
 # Generated images
 *.jpg

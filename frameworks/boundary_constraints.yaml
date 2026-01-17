@@ -1,0 +1,21 @@
+description: 边界约束定义了系统的安全运行范围和限制条件。它们可以防止系统执行不安全或不希望的操作，并确保系统在可控范围内运行。边界约束通常包括安全措施、故障保护机制和错误处理程序。
+description_en: Boundary constraints define the safe operating range and limitations
+  of a system. They prevent the system from performing unsafe or undesirable actions
+  and ensure that the system operates within controllable limits. Boundary constraints
+  typically include safety measures, fail-safe mechanisms, and error handling procedures.
+id: boundary_constraints
+keywords:
+- 安全
+- 限制
+- 故障保护
+- 错误处理
+- 风险
+name: 边界约束 (Boundary Constraints)
+name_en: Boundary Constraints
+origin: 工程学, 安全工程
+use_when: 确保AI agent的行为符合安全标准和道德准则，防止潜在的风险。
+visual_elements:
+- 警示图标
+- 红线
+- 禁止符号
+- 安全防护

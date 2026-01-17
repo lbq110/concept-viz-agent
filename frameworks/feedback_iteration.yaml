@@ -1,0 +1,23 @@
+description: 反馈迭代是一个通过持续收集和分析反馈来改进产品或过程的循环过程。它涉及计划、执行、评估和调整等步骤，以确保产品或过程不断改进并满足用户需求。反馈可以来自用户、测试人员或系统本身。
+description_en: Feedback iteration is a cyclical process of improving a product or
+  process by continuously collecting and analyzing feedback. It involves steps such
+  as planning, execution, evaluation, and adjustment to ensure that the product or
+  process is continuously improved and meets user needs. Feedback can come from users,
+  testers, or the system itself.
+id: feedback_iteration
+keywords:
+- 反馈
+- 迭代
+- 改进
+- 用户
+- 测试
+- 调整
+name: 反馈迭代 (Feedback Iteration)
+name_en: Feedback Iteration
+origin: 软件开发, 设计
+use_when: 持续优化AI agent的性能，确保其满足不断变化的需求和目标。
+visual_elements:
+- 循环箭头
+- 流程图
+- 数据分析图
+- 用户图标
