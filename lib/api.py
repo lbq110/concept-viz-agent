@@ -78,7 +78,17 @@ class GoogleProvider(BaseProvider):
 
         return ""
 
-    def generate_image(self, prompt: str, output_path: str = None, model: str = None) -> Dict:
+    def generate_image(self, prompt: str, output_path: str = None, model: str = None,
+                        aspect_ratio: str = "16:9") -> Dict:
+        """
+        生成图像
+
+        Args:
+            prompt: 图像生成提示词
+            output_path: 输出路径
+            model: 模型名称
+            aspect_ratio: 宽高比，支持 "1:1", "16:9", "9:16", "4:3", "3:4"
+        """
         model = model or self.config.get("image_model", "nano-banana-pro-preview")
         url = f"{self.base_url}/models/{model}:generateContent"
 
@@ -87,9 +97,14 @@ class GoogleProvider(BaseProvider):
             "X-goog-api-key": self.api_key
         }
 
+        # 添加4K分辨率和宽高比指令到prompt
+        enhanced_prompt = f"{prompt}\n\nIMPORTANT: Generate in 4K ultra-high resolution (3840x2160 or higher). Ensure all Chinese text is crystal clear, sharp, and correctly rendered."
+
         payload = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"responseModalities": ["image", "text"]}
+            "contents": [{"parts": [{"text": enhanced_prompt}]}],
+            "generationConfig": {
+                "responseModalities": ["image", "text"]
+            }
         }
 
         response = requests.post(url, headers=headers, json=payload, timeout=180)

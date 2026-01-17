@@ -1,0 +1,23 @@
+confidence: 0.85
+description: 为AI代理定义不同级别的安全边界，包括“必须做”、“询问后做”和“禁止做”，以限制代理的行为，防止出现安全问题。
+description_en: Defining different levels of safety boundaries for AI agents, including
+  'Always do', 'Ask first', and 'Never do', to limit the agent's behavior and prevent
+  security issues.
+discovered_at: '2026-01-16T20:40:08.820187'
+keywords:
+- safety
+- boundaries
+- constraints
+- AI safety
+- risk management
+name: 分层安全边界 (Tiered Safety Boundaries)
+name_en: Tiered Safety Boundaries
+origin: Security Engineering/AI Safety
+source_quote: 'Build In Self-Checks and Constraints
+
+  Implement three-tier boundaries: Always do (safe actions), Ask first (high-impact
+  changes), Never do (hard stops).'
+use_when: 当AI代理具有潜在风险，需要对其行为进行严格控制时。
+visual_elements:
+- Traffic light system
+- Firewall diagram

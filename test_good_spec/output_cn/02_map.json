@@ -1,0 +1,70 @@
+{
+  "mappings": [
+    {
+      "concept_id": "concept_1",
+      "original_name": "Modular_Specs",
+      "framework": "modular_prompting",
+      "framework_name": "模块化提示",
+      "mapping_explanation": "模块化规范与模块化提示的核心思想一致，都是将一个大的、复杂的任务分解为更小、更易于管理的模块。这可以避免AI代理被大量指令淹没，提高其性能和可控性。每个模块化的规范就像一个独立的提示，使AI能够专注于单个任务，减少出错的可能性。",
+      "new_title": "MODULAR SPECIFICATIONS AS FOCUSED PROMPTS",
+      "subtitle": "Combating the Curse of Instructions",
+      "insight": "模块化规范的优势在于，它允许我们更精确地控制AI的行为，并通过迭代改进每个模块来提高整体性能。通过将复杂任务分解为多个简单的任务，我们可以更有效地利用AI的能力，避免因指令过于复杂而导致的错误。",
+      "visual_metaphor": "A tree diagram with branches representing different modules."
+    },
+    {
+      "concept_id": "concept_2",
+      "original_name": "High-Level_Start",
+      "framework": "ai_assisted_iterative_specification",
+      "framework_name": "AI辅助的迭代式规范",
+      "mapping_explanation": "高层起始方法与AI辅助的迭代式规范中的“初期高层次概括”部分相对应。这种方法不是一开始就设计详尽的规范，而是先给出简洁的高层描述，然后让AI在迭代过程中逐步完善细节。开发者和AI通过持续的反馈循环共同改进规范，这种协作式的精炼过程是此框架的关键。",
+      "new_title": "HIGH-LEVEL START: SEEDING ITERATIVE AI-ASSISTED SPECIFICATIONS",
+      "subtitle": "From Concise Brief to Detailed Blueprint",
+      "insight": "从高层开始，可以让AI发挥其创造力和细节填充能力，避免开发者陷入过度设计的陷阱。这种方法能够更有效地利用AI的潜力，通过人机协作，生成更完善、更符合实际需求的规范。",
+      "visual_metaphor": "A seed growing into a plant, representing the high-level brief expanding into a detailed specification."
+    },
+    {
+      "concept_id": "concept_3",
+      "original_name": "Professional_PRD",
+      "framework": "anancism",
+      "framework_name": "必然论",
+      "mapping_explanation": "专业PRD的结构化方法，通过定义清晰的规范区域（如可执行命令、测试等），为AI代理提供了一套硬性规则和约束。这些规则就像一个严密的框架，指导AI的行为，确保其输出符合预期。这与必然论强调的规则、约束和机械因果关系相吻合。",
+      "new_title": "PROFESSIONAL PRD: ANANCISTIC SPECIFICATION STRUCTURE",
+      "subtitle": "Rigid Framework for AI Behavior",
+      "insight": "通过采用专业PRD的结构化规范，我们可以减少AI的自由度，使其更加可靠和可预测。这种方法适用于对安全性、准确性要求较高的场景，能够有效地避免AI产生意外行为。",
+      "visual_metaphor": "A blueprint for a machine, with labeled components and precise instructions."
+    },
+    {
+      "concept_id": "concept_4",
+      "original_name": "Self-Checks_Constraints",
+      "framework": "tiered_constraint_system",
+      "framework_name": "分层约束系统",
+      "mapping_explanation": "自检约束概念直接对应于分层约束系统。'Always do'、'Ask first' 和 'Never do' 分类正是分层约束的具体体现，在灵活性和安全性之间取得平衡。允许 AI 在安全范围内自由行动，高风险操作需要许可，并禁止某些操作。",
+      "new_title": "SELF-CHECKS AND CONSTRAINTS: A TIERED SAFETY NET FOR AI",
+      "subtitle": "Balancing Freedom and Control",
+      "insight": "分层约束系统能够有效地降低AI风险，在保证安全的前提下，赋予AI一定的自主性。这种方法比一刀切的约束更灵活，也更容易适应复杂多变的应用场景。",
+      "visual_metaphor": "A traffic light system guiding AI behavior."
+    },
+    {
+      "concept_id": "concept_5",
+      "original_name": "Test_Iterate_Evolve",
+      "framework": "ai_assisted_spec_evolution",
+      "framework_name": "AI辅助的规范演化",
+      "mapping_explanation": "测试迭代进化过程与AI辅助的规范演化框架的核心思想一致。该框架强调将AI纳入软件规范的创建和迭代过程，并通过测试反馈不断优化规范。 将规范视为“活文档”，强调测试后的更新、版本控制和AI输出与规范改进之间的反馈循环。",
+      "new_title": "TEST, ITERATE, EVOLVE: AI-ASSISTED SPECIFICATION EVOLUTION",
+      "subtitle": "Continuous Improvement Through Feedback Loops",
+      "insight": "将规范视为活文档，并通过测试反馈不断进行迭代和优化，可以确保规范的准确性和有效性，从而提高AI辅助工程的质量。同时，引入版本控制可以追踪规范的演变过程，方便回溯和调试。",
+      "visual_metaphor": "A continuous integration/continuous delivery (CI/CD) pipeline."
+    },
+    {
+      "concept_id": "concept_6",
+      "original_name": "AI_Discipline",
+      "framework": "anancism",
+      "framework_name": "必然论",
+      "mapping_explanation": "AI纪律强调清晰规范的重要性，认为模糊的提示会导致错误的结果。这与必然论的核心思想相符，即通过规则、约束和机械因果关系来实现控制。清晰的规范就像一套明确的规则，指导AI的行为，使其输出符合预期。 \"Vague prompts mean wrong results.\"",
+      "new_title": "AI DISCIPLINE: THE ANANCISM OF CLEAR SPECIFICATIONS",
+      "subtitle": "Turning Specifications into Executable Artifacts",
+      "insight": "AI纪律的重要性在于，它提醒我们，AI并非万能的，需要清晰、明确的指令才能发挥其作用。通过采用结构化的规范，我们可以提高AI的可控性和可靠性，避免因输入不明确而导致的错误。",
+      "visual_metaphor": "A well-defined flowchart guiding a robot's actions."
+    }
+  ]
+}

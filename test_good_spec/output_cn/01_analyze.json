@@ -1,0 +1,111 @@
+{
+  "main_theme": "Writing effective, modular specifications is crucial for guiding AI coding agents towards productive and accurate software development.",
+  "key_concepts": [
+    {
+      "id": "concept_1",
+      "name": "Modular_Specs",
+      "name_cn": "模块化规范",
+      "description": "Breaking down large specifications into smaller, focused modules to avoid overwhelming AI agents and improve adherence to instructions.",
+      "key_quote": "Avoid monolithic specs. Research shows the \"curse of instructions\"—too many directives simultaneously reduces adherence. Address one focused task at a time, using hierarchical summaries and sub-agents for complex projects.",
+      "visualization_type": "hierarchy",
+      "importance": 10
+    },
+    {
+      "id": "concept_2",
+      "name": "High-Level_Start",
+      "name_cn": "高层起始",
+      "description": "Starting with a concise, high-level brief and allowing the AI agent to elaborate the details in a collaborative refinement process.",
+      "key_quote": "Begin with a concise brief rather than over-engineering upfront. Use \"Plan Mode\" (read-only) to have the agent draft detailed specs from your vision, then refine collaboratively before execution.",
+      "visualization_type": "flowchart",
+      "importance": 9
+    },
+    {
+      "id": "concept_3",
+      "name": "Professional_PRD",
+      "name_cn": "专业PRD",
+      "description": "Structuring specifications like a professional Product Requirements Document (PRD) with essential areas like executable commands, testing, and clear boundaries.",
+      "key_quote": "Organize specs with six essential areas: executable commands, testing procedures, project structure, code style examples, git workflow, and clear boundaries. Use consistent formatting (Markdown, XML tags) for better AI parsing.",
+      "visualization_type": "hierarchy",
+      "importance": 8
+    },
+    {
+      "id": "concept_4",
+      "name": "Self-Checks_Constraints",
+      "name_cn": "自检约束",
+      "description": "Implementing boundaries and self-checks to guide AI behavior, prevent errors, and ensure safe actions, divided into 'Always do', 'Ask first', and 'Never do' categories.",
+      "key_quote": "Implement three-tier boundaries: Always do (safe actions), Ask first (high-impact changes), Never do (hard stops). Include conformance testing and leverage domain expertise to prevent predictable failures.",
+      "visualization_type": "flowchart",
+      "importance": 9
+    },
+    {
+      "id": "concept_5",
+      "name": "Test_Iterate_Evolve",
+      "name_cn": "测试迭代进化",
+      "description": "Treating specifications as living documents that are continuously tested, iterated upon based on findings, and version controlled.",
+      "key_quote": "Treat specs as living documents. Run continuous tests after milestones, update specs based on findings, and use version control. Maintain feedback loops between AI output and specification refinement.",
+      "visualization_type": "flowchart",
+      "importance": 8
+    },
+    {
+      "id": "concept_6",
+      "name": "AI_Discipline",
+      "name_cn": "AI 规范",
+      "description": "The article emphasizes the need for discipline in AI-assisted engineering, stating clear specifications are vital for driving implementation.",
+      "key_quote": "\"Vague prompts mean wrong results.\" Successful AI-assisted engineering requires discipline: clear specifications become executable artifacts that drive implementation, not afterthoughts.",
+      "visualization_type": "attractor",
+      "importance": 10
+    }
+  ],
+  "relationships": [
+    {
+      "from": "concept_2",
+      "to": "concept_3",
+      "type": "enables"
+    },
+    {
+      "from": "concept_3",
+      "to": "concept_4",
+      "type": "contains"
+    },
+    {
+      "from": "concept_1",
+      "to": "concept_3",
+      "type": "enables"
+    },
+    {
+      "from": "concept_4",
+      "to": "concept_5",
+      "type": "enables"
+    },
+    {
+      "from": "concept_5",
+      "to": "concept_1",
+      "type": "enables"
+    },
+    {
+      "from": "concept_6",
+      "to": "concept_1",
+      "type": "enables"
+    },
+    {
+      "from": "concept_6",
+      "to": "concept_2",
+      "type": "enables"
+    },
+    {
+      "from": "concept_6",
+      "to": "concept_3",
+      "type": "enables"
+    },
+    {
+      "from": "concept_6",
+      "to": "concept_4",
+      "type": "enables"
+    },
+    {
+      "from": "concept_6",
+      "to": "concept_5",
+      "type": "enables"
+    }
+  ]
+}

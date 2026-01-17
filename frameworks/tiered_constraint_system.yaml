@@ -1,0 +1,22 @@
+confidence: 0.9
+description: 一种将约束分为不同层级的系统，允许AI在安全范围内自由行动，对高风险操作请求许可，并禁止特定操作，从而在灵活性和安全性之间取得平衡。
+description_en: A system that categorizes constraints into different tiers, allowing
+  AI to act freely within a safe range, request permission for high-risk operations,
+  and prohibit specific actions, thus balancing flexibility and safety.
+discovered_at: '2026-01-16T21:19:12.062066'
+keywords:
+- constraints
+- safety
+- AI safety
+- risk management
+- permission
+- flexibility
+name: 分层约束系统 (Tiered Constraint System)
+name_en: Tiered Constraint System
+origin: AI安全, 软件工程
+source_quote: 'Implement three-tier boundaries: Always do (safe actions), Ask first
+  (high-impact changes), Never do (hard stops).'
+use_when: 在需要控制AI行为以防止潜在风险，同时又希望AI能够自主地完成任务时。
+visual_elements:
+- 金字塔形结构，不同层级代表不同类型的约束
+- 流程图，展示AI如何根据约束做出决策

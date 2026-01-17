@@ -1,0 +1,32 @@
+confidence: 0.8
+description: 将AI代理纳入软件规范的创建和迭代过程，通过Plan Mode辅助生成初始规范，并通过测试反馈不断优化规范。
+description_en: Incorporating AI agents into the creation and iteration of software
+  specifications, using Plan Mode to assist in generating initial specifications,
+  and continuously optimizing specifications through test feedback.
+discovered_at: '2026-01-16T20:40:08.818311'
+keywords:
+- specification
+- evolution
+- AI agent
+- feedback loop
+- testing
+- iteration
+name: AI辅助的规范演化 (AI-Assisted Specification Evolution)
+name_en: AI-Assisted Specification Evolution
+origin: Software Engineering/AI
+source_quote: 'Start High-Level, Let AI Elaborate
+
+  Begin with a concise brief rather than over-engineering upfront. Use "Plan Mode"
+  (read-only) to have the agent draft detailed specs from your vision, then refine
+  collaboratively before execution.
+
+
+  Test, Iterate, and Evolve
+
+  Treat specs as living documents. Run continuous tests after milestones, update specs
+  based on findings, and use version control. Maintain feedback loops between AI output
+  and specification refinement.'
+use_when: 当需要快速迭代软件规范，并希望利用AI的能力辅助生成和优化规范时。
+visual_elements:
+- Continuous Integration/Continuous Delivery (CI/CD) pipeline
+- Feedback loop diagram

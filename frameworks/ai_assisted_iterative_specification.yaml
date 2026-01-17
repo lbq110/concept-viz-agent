@@ -1,0 +1,25 @@
+confidence: 0.95
+description: 一种利用AI辅助，通过迭代式地编写、测试和改进规范，来指导AI Agent完成任务的方法。强调初期高层次概括，AI细化，协作精炼，以及持续的反馈循环。
+description_en: A method that uses AI assistance to iteratively write, test, and improve
+  specifications to guide AI Agents in completing tasks. It emphasizes an initial
+  high-level overview, AI elaboration, collaborative refinement, and a continuous
+  feedback loop.
+discovered_at: '2026-01-16T21:19:12.060427'
+keywords:
+- AI agent
+- specification
+- iteration
+- feedback loop
+- testing
+- modular
+- refinement
+name: AI辅助的迭代式规范 (AI-Assisted Iterative Specification)
+name_en: AI-Assisted Iterative Specification
+origin: 软件工程, AI辅助工程
+source_quote: Treat specs as living documents. Run continuous tests after milestones,
+  update specs based on findings, and use version control. Maintain feedback loops
+  between AI output and specification refinement.
+use_when: 当需要利用AI Agent完成复杂的软件工程任务，并且规范的完整性和准确性至关重要时。
+visual_elements:
+- 循环图，体现AI、开发者和规范之间的互动
+- 版本控制图，体现规范的演化

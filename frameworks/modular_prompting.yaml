@@ -1,0 +1,25 @@
+confidence: 0.9
+description: 将大型任务分解为更小、更集中的提示，以提高AI代理的性能和可控性。避免“指令诅咒”，一次只关注一个任务。
+description_en: Breaking down large tasks into smaller, more focused prompts to improve
+  the performance and controllability of AI agents. Avoids the 'curse of instructions'
+  by focusing on one task at a time.
+discovered_at: '2026-01-16T20:40:08.815984'
+keywords:
+- modular
+- prompt
+- decomposition
+- focus
+- AI agent
+- curse of instructions
+name: 模块化提示 (Modular Prompting)
+name_en: Modular Prompting
+origin: AI/NLP
+source_quote: 'Break Into Modular Prompts
+
+  Avoid monolithic specs. Research shows the "curse of instructions"—too many directives
+  simultaneously reduces adherence. Address one focused task at a time, using hierarchical
+  summaries and sub-agents for complex projects.'
+use_when: 当需要AI代理执行复杂任务，且直接给出大量指令容易出错时。
+visual_elements:
+- Flowchart
+- Hierarchical diagram

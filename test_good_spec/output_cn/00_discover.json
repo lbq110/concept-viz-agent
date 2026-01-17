@@ -1,0 +1,107 @@
+{
+  "discovery": {
+    "discovered_frameworks": [
+      {
+        "id": "ai_assisted_iterative_specification",
+        "name": "AI辅助的迭代式规范 (AI-Assisted Iterative Specification)",
+        "name_en": "AI-Assisted Iterative Specification",
+        "origin": "软件工程, AI辅助工程",
+        "description": "一种利用AI辅助，通过迭代式地编写、测试和改进规范，来指导AI Agent完成任务的方法。强调初期高层次概括，AI细化，协作精炼，以及持续的反馈循环。",
+        "description_en": "A method that uses AI assistance to iteratively write, test, and improve specifications to guide AI Agents in completing tasks. It emphasizes an initial high-level overview, AI elaboration, collaborative refinement, and a continuous feedback loop.",
+        "keywords": [
+          "AI agent",
+          "specification",
+          "iteration",
+          "feedback loop",
+          "testing",
+          "modular",
+          "refinement"
+        ],
+        "visual_elements": [
+          "循环图，体现AI、开发者和规范之间的互动",
+          "版本控制图，体现规范的演化"
+        ],
+        "use_when": "当需要利用AI Agent完成复杂的软件工程任务，并且规范的完整性和准确性至关重要时。",
+        "is_new": true,
+        "confidence": 0.95,
+        "source_quote": "Treat specs as living documents. Run continuous tests after milestones, update specs based on findings, and use version control. Maintain feedback loops between AI output and specification refinement."
+      },
+      {
+        "id": "tiered_constraint_system",
+        "name": "分层约束系统 (Tiered Constraint System)",
+        "name_en": "Tiered Constraint System",
+        "origin": "AI安全, 软件工程",
+        "description": "一种将约束分为不同层级的系统，允许AI在安全范围内自由行动，对高风险操作请求许可，并禁止特定操作，从而在灵活性和安全性之间取得平衡。",
+        "description_en": "A system that categorizes constraints into different tiers, allowing AI to act freely within a safe range, request permission for high-risk operations, and prohibit specific actions, thus balancing flexibility and safety.",
+        "keywords": [
+          "constraints",
+          "safety",
+          "AI safety",
+          "risk management",
+          "permission",
+          "flexibility"
+        ],
+        "visual_elements": [
+          "金字塔形结构，不同层级代表不同类型的约束",
+          "流程图，展示AI如何根据约束做出决策"
+        ],
+        "use_when": "在需要控制AI行为以防止潜在风险，同时又希望AI能够自主地完成任务时。",
+        "is_new": true,
+        "confidence": 0.9,
+        "source_quote": "Implement three-tier boundaries: Always do (safe actions), Ask first (high-impact changes), Never do (hard stops)."
+      }
+    ],
+    "existing_matches": [
+      {
+        "framework_id": "modular_prompting",
+        "relevance": "high",
+        "enrichment": "文章强调模块化规范的重要性，并指出“指令诅咒”，即过多的指令会降低AI的遵循度。 这可以被认为是 modular_prompting 的一个具体应用场景和理论基础。"
+      },
+      {
+        "framework_id": "ai_assisted_spec_evolution",
+        "relevance": "high",
+        "enrichment": "discovered_frameworks 中的 ai_assisted_iterative_specification  本质上是对 ai_assisted_spec_evolution 的一种更详细的描述和完善，可以补充到现有框架。"
+      },
+      {
+        "framework_id": "tiered_safety_boundaries",
+        "relevance": "high",
+        "enrichment": "discovered_frameworks 中的 tiered_constraint_system 本质上是 tiered_safety_boundaries 的同义词，可以补充到现有框架。"
+      }
+    ]
+  },
+  "learning": {
+    "new_frameworks_added": [
+      {
+        "id": "ai_assisted_iterative_specification",
+        "name": "AI辅助的迭代式规范 (AI-Assisted Iterative Specification)",
+        "confidence": 0.95
+      },
+      {
+        "id": "tiered_constraint_system",
+        "name": "分层约束系统 (Tiered Constraint System)",
+        "confidence": 0.9
+      }
+    ],
+    "frameworks_enriched": [
+      {
+        "id": "modular_prompting",
+        "enrichment": "文章强调模块化规范的重要性，并指出“指令诅咒”，即过多的指令会降低AI的遵循度。 这可以被认为是 modular_prompting 的一个具体应用场景和理论基础。"
+      },
+      {
+        "id": "ai_assisted_spec_evolution",
+        "enrichment": "discovered_frameworks 中的 ai_assisted_iterative_specification  本质上是对 ai_assisted_spec_evolution 的一种更详细的描述和完善，可以补充到现有框架。"
+      },
+      {
+        "id": "tiered_safety_boundaries",
+        "enrichment": "discovered_frameworks 中的 tiered_constraint_system 本质上是 tiered_safety_boundaries 的同义词，可以补充到现有框架。"
+      }
+    ],
+    "skipped": []
+  },
+  "summary": {
+    "new_added": 2,
+    "enriched": 3,
+    "skipped": 0,
+    "total_frameworks": 16
+  }
+}

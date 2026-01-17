@@ -1,0 +1,176 @@
+{
+  "designs": [
+    {
+      "concept_id": "concept_1",
+      "title": "模块化规范：避免指令诅咒",
+      "chart_type": "pyramid",
+      "layout": "full",
+      "visual_elements": [
+        "A pyramid divided into distinct levels, each representing a module",
+        "Connection lines between modules",
+        "Each level has a description box"
+      ],
+      "text_boxes": [
+        {
+          "label": "顶层模块",
+          "content": "高层目标"
+        },
+        {
+          "label": "中层模块",
+          "content": "任务分解"
+        },
+        {
+          "label": "底层模块",
+          "content": "具体指令"
+        }
+      ],
+      "key_quote": "模块化规范允许我们更精确地控制AI的行为。",
+      "image_prompt": "Technical blueprint-style infographic illustrating modular specifications as focused prompts. The background is a detailed engineering blueprint with grid lines and subtle technical annotations. A pyramid structure dominates the image, divided into three distinct levels. The top level, labeled '顶层模块: 高层目标' (Top Module: High-Level Goal) in a text box, represents the overall objective. The middle level, labeled '中层模块: 任务分解' (Middle Module: Task Breakdown), shows the breakdown of the goal into smaller tasks. The bottom level, labeled '底层模块: 具体指令' (Bottom Module: Specific Instructions), represents the specific instructions for each task. Connection lines link the modules to showcase the flow of information. The pyramid is colored in teal blue (#2F3376) with deep red accents highlighting key connections. The title '模块化规范：避免指令诅咒' (Modular Specifications: Avoiding the Curse of Instructions) is in dark red capital letters using a bold serif font like Crimson Pro at the top. Subtitle: '减少指令复杂度' (Reducing Instruction Complexity) in smaller font below the title. A key quote '模块化规范允许我们更精确地控制AI的行为。' (Modular specifications allow us to control AI behavior more precisely.) is placed at the bottom. A small watermark is located in the bottom right corner. All text, labels, titles, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be clear, legible, and correctly rendered. Use a clean Chinese font like Noto Sans SC, Source Han Sans, or Microsoft YaHei. Detailed technical drawing style with a focus on clarity and precision. 4K resolution, ultra high quality, sharp details."
+    },
+    {
+      "concept_id": "concept_2",
+      "title": "高层起始：迭代式规范的萌芽",
+      "chart_type": "flowchart",
+      "layout": "full",
+      "visual_elements": [
+        "A flowchart showing the iterative process",
+        "Seed icon transforming into a plant icon",
+        "AI feedback loop"
+      ],
+      "text_boxes": [
+        {
+          "label": "起始",
+          "content": "高层概括"
+        },
+        {
+          "label": "AI辅助",
+          "content": "细节完善"
+        },
+        {
+          "label": "迭代",
+          "content": "反馈循环"
+        },
+        {
+          "label": "结果",
+          "content": "详细规范"
+        }
+      ],
+      "key_quote": "从高层开始，可以让AI发挥其创造力和细节填充能力。",
+      "image_prompt": "Technical blueprint-style infographic illustrating high-level start as seeding iterative AI-assisted specifications. The background features a blueprint-style design with subtle grid patterns and engineering schematics. A flowchart diagram represents the iterative process of specification development. The process starts with a '起始: 高层概括' (Start: High-Level Overview) represented by a seed icon. The seed transforms into a growing plant icon, representing 'AI辅助: 细节完善' (AI Assistance: Detail Refinement). An '迭代: 反馈循环' (Iteration: Feedback Loop) arrow indicates the continuous refinement process. Finally, the plant blooms into a detailed specification represented by '结果: 详细规范' (Result: Detailed Specification). The icons are rendered in teal blue (#2F3376) with warm brown/gold accents highlighting the growth stages. The title '高层起始：迭代式规范的萌芽' (High-Level Start: The Germination of Iterative Specifications) is prominently displayed in dark red capital letters using a bold serif font like Crimson Pro at the top. Subtitle: '从简洁概要到详细蓝图' (From Concise Brief to Detailed Blueprint) below the title. A key quote '从高层开始，可以让AI发挥其创造力和细节填充能力。' (Starting from a high level allows AI to leverage its creativity and detail-filling abilities.) is placed near the bottom. A small watermark is located in the bottom right corner. All text, labels, titles, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be clear, legible, and correctly rendered. Use a clean Chinese font like Noto Sans SC, Source Han Sans, or Microsoft YaHei. Detailed technical drawing style emphasizing growth and refinement. 4K resolution, ultra high quality, sharp details."
+    },
+    {
+      "concept_id": "concept_3",
+      "title": "专业PRD：必然论的规范结构",
+      "chart_type": "matrix",
+      "layout": "full",
+      "visual_elements": [
+        "A 2x2 matrix with labeled quadrants",
+        "Blueprint of a machine in the background",
+        "Each quadrant describes a component of a PRD"
+      ],
+      "text_boxes": [
+        {
+          "label": "象限1",
+          "content": "可执行命令"
+        },
+        {
+          "label": "象限2",
+          "content": "测试用例"
+        },
+        {
+          "label": "象限3",
+          "content": "输入输出规范"
+        },
+        {
+          "label": "象限4",
+          "content": "错误处理"
+        }
+      ],
+      "key_quote": "通过采用专业PRD的结构化规范，我们可以减少AI的自由度。",
+      "image_prompt": "Technical blueprint-style infographic illustrating professional PRD as an anancistic specification structure. The background is a detailed blueprint of a complex machine with labeled components and precise instructions. A 2x2 matrix overlays the blueprint, dividing the specification into four key quadrants. The quadrants are labeled '象限1: 可执行命令' (Quadrant 1: Executable Commands), '象限2: 测试用例' (Quadrant 2: Test Cases), '象限3: 输入输出规范' (Quadrant 3: Input/Output Specifications), and '象限4: 错误处理' (Quadrant 4: Error Handling). Each quadrant contains a brief description of its purpose and content. The matrix is colored in teal blue (#2F3376) with deep red accents highlighting the key components. The title '专业PRD：必然论的规范结构' (Professional PRD: Anancistic Specification Structure) is prominently displayed in dark red capital letters using a bold serif font like Crimson Pro at the top. Subtitle: 'AI行为的刚性框架' (Rigid Framework for AI Behavior) below the title. A key quote '通过采用专业PRD的结构化规范，我们可以减少AI的自由度。' (By adopting a structured specification of a professional PRD, we can reduce AI's degrees of freedom.) is placed near the bottom. A small watermark is located in the bottom right corner. All text, labels, titles, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be clear, legible, and correctly rendered. Use a clean Chinese font like Noto Sans SC, Source Han Sans, or Microsoft YaHei. Detailed technical drawing style with a focus on precision and control. 4K resolution, ultra high quality, sharp details."
+    },
+    {
+      "concept_id": "concept_4",
+      "title": "自检约束：AI的分层安全网",
+      "chart_type": "venn",
+      "layout": "full",
+      "visual_elements": [
+        "Three overlapping circles representing 'Always Do', 'Ask First', and 'Never Do'",
+        "Each circle labeled and colored differently"
+      ],
+      "text_boxes": [
+        {
+          "label": "总是执行",
+          "content": "安全操作"
+        },
+        {
+          "label": "询问优先",
+          "content": "高风险操作，需要许可"
+        },
+        {
+          "label": "禁止执行",
+          "content": "不安全或不允许的操作"
+        }
+      ],
+      "key_quote": "分层约束系统能够有效地降低AI风险，在保证安全的前提下，赋予AI一定的自主性。",
+      "image_prompt": "Technical blueprint-style infographic illustrating self-checks and constraints as a tiered safety net for AI. The background is a technical drawing resembling an electrical circuit diagram. Three overlapping circles in a Venn diagram represent different levels of constraints: '总是执行: 安全操作' (Always Do: Safe Operations), '询问优先: 高风险操作，需要许可' (Ask First: High-Risk Operations, Requires Permission), and '禁止执行: 不安全或不允许的操作' (Never Do: Unsafe or Prohibited Operations). The 'Always Do' circle is teal blue (#2F3376), 'Ask First' is warm brown/gold, and 'Never Do' is deep red. The overlapping areas represent trade-offs and considerations between these constraints. The title '自检约束：AI的分层安全网' (Self-Checks and Constraints: A Tiered Safety Net for AI) is prominently displayed in dark red capital letters using a bold serif font like Crimson Pro at the top. Subtitle: '平衡自由与控制' (Balancing Freedom and Control) below the title. A key quote '分层约束系统能够有效地降低AI风险，在保证安全的前提下，赋予AI一定的自主性。' (Tiered constraint systems can effectively reduce AI risk, ensuring safety while granting AI a degree of autonomy.) is placed near the bottom. A small watermark is located in the bottom right corner. All text, labels, titles, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be clear, legible, and correctly rendered. Use a clean Chinese font like Noto Sans SC, Source Han Sans, or Microsoft YaHei. Detailed technical drawing style with a focus on safety and control. 4K resolution, ultra high quality, sharp details."
+    },
+    {
+      "concept_id": "concept_5",
+      "title": "测试、迭代、演化：AI辅助规范演化",
+      "chart_type": "cycle",
+      "layout": "full",
+      "visual_elements": [
+        "A continuous cycle representing the testing, iteration, and evolution process",
+        "Icons representing code, testing, and AI feedback"
+      ],
+      "text_boxes": [
+        {
+          "label": "测试",
+          "content": "自动化测试"
+        },
+        {
+          "label": "迭代",
+          "content": "版本控制"
+        },
+        {
+          "label": "演化",
+          "content": "AI反馈"
+        }
+      ],
+      "key_quote": "将规范视为活文档，并通过测试反馈不断进行迭代和优化，可以确保规范的准确性和有效性。",
+      "image_prompt": "Technical blueprint-style infographic illustrating test, iterate, evolve as AI-assisted specification evolution. The background is designed to resemble a CI/CD (Continuous Integration/Continuous Delivery) pipeline diagram. A continuous cycle is the central visual element, representing the ongoing process of testing, iteration, and evolution. The cycle consists of three main phases: '测试: 自动化测试' (Test: Automated Testing), represented by a testing icon; '迭代: 版本控制' (Iterate: Version Control), represented by a version control icon; and '演化: AI反馈' (Evolve: AI Feedback), represented by an AI feedback icon. Arrows indicate the continuous flow and feedback loop. The icons are colored in teal blue (#2F3376) with deep red accents highlighting the feedback loops. The title '测试、迭代、演化：AI辅助规范演化' (Test, Iterate, Evolve: AI-Assisted Specification Evolution) is prominently displayed in dark red capital letters using a bold serif font like Crimson Pro at the top. Subtitle: '通过反馈循环持续改进' (Continuous Improvement Through Feedback Loops) below the title. A key quote '将规范视为活文档，并通过测试反馈不断进行迭代和优化，可以确保规范的准确性和有效性。' (Treating specifications as living documents and continuously iterating and optimizing them through testing feedback can ensure their accuracy and effectiveness.) is placed near the bottom. A small watermark is located in the bottom right corner. All text, labels, titles, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be clear, legible, and correctly rendered. Use a clean Chinese font like Noto Sans SC, Source Han Sans, or Microsoft YaHei. Detailed technical drawing style highlighting the iterative and evolving nature of the process. 4K resolution, ultra high quality, sharp details."
+    },
+    {
+      "concept_id": "concept_6",
+      "title": "AI纪律：清晰规范的必然性",
+      "chart_type": "flowchart",
+      "layout": "full",
+      "visual_elements": [
+        "A well-defined flowchart guiding a robot's actions",
+        "Clear and concise instructions at each step",
+        "Error handling paths"
+      ],
+      "text_boxes": [
+        {
+          "label": "输入",
+          "content": "清晰规范"
+        },
+        {
+          "label": "处理",
+          "content": "AI执行"
+        },
+        {
+          "label": "输出",
+          "content": "预期结果"
+        },
+        {
+          "label": "错误",
+          "content": "模糊指令"
+        }
+      ],
+      "key_quote": "AI纪律的重要性在于，它提醒我们，AI并非万能的，需要清晰、明确的指令才能发挥其作用。",
+      "image_prompt": "Technical blueprint-style infographic illustrating AI discipline as the anancism of clear specifications. The background features a blueprint of a robot operating within a factory environment. A flowchart diagram guides the robot's actions. The flowchart starts with '输入: 清晰规范' (Input: Clear Specifications), leading to '处理: AI执行' (Process: AI Execution), and resulting in '输出: 预期结果' (Output: Expected Results). An alternative path, originating from '输入' is labeled '错误: 模糊指令' (Error: Vague Instructions), indicating the consequences of unclear inputs. Each step in the flowchart has clear and concise instructions. The flowchart is colored in teal blue (#2F3376) with deep red accents highlighting the error path. The title 'AI纪律：清晰规范的必然性' (AI Discipline: The Anancism of Clear Specifications) is prominently displayed in dark red capital letters using a bold serif font like Crimson Pro at the top. Subtitle: '将规范转化为可执行的产物' (Turning Specifications into Executable Artifacts) below the title. A key quote 'AI纪律的重要性在于，它提醒我们，AI并非万能的，需要清晰、明确的指令才能发挥其作用。' (The importance of AI discipline is that it reminds us that AI is not omnipotent and requires clear and explicit instructions to function effectively.) is placed near the bottom. A small watermark is located in the bottom right corner. All text, labels, titles, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be clear, legible, and correctly rendered. Use a clean Chinese font like Noto Sans SC, Source Han Sans, or Microsoft YaHei. Detailed technical drawing style emphasizing clarity, precision, and error prevention. 4K resolution, ultra high quality, sharp details."
+    }
+  ]
+}
