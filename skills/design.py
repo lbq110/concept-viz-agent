@@ -66,29 +66,37 @@ DESIGN_PROMPT = '''你是一位才华横溢的视觉艺术大师，同时精通�
 
 **提示词生成要求（必须遵守）：**
 
-🎨 **艺术表达词汇库（必须大量使用）：**
-- 光影：glowing, luminous, radiant, shimmering, ethereal light, beam of light piercing through
-- 动态：flowing, surging, converging, emanating, cascading, spiraling upward
-- 质感：crystalline, translucent, gossamer, metallic sheen, aged patina
+🎨 **艺术表达词汇库（必须使用）：**
+- 光影：glowing, luminous, radiant, shimmering, ethereal light
+- 动态：flowing, surging, converging, emanating, cascading
+- 质感：crystalline, translucent, metallic sheen, aged patina
 - 力场：magnetic field lines, gravitational pull, lines of force, energy streams
-- 氛围：mystical, ethereal, transcendent, harmonious resonance
-- 隐喻：like a constellation of ideas, cathedral of knowledge, symphony of concepts
+
+📐 **工程制图元素（必须包含！这是关键）：**
+- **复古纸张**："vintage blueprint paper" 或 "aged engineering paper texture"
+- **技术标注**："technical callouts with annotation lines pointing to key elements"
+- **比例尺**："scale bar at bottom (e.g., SCALE 1:1000)"
+- **图例框**："legend box explaining color codes"
+- **版本编号**："version number and document code in corner (e.g., V1.0, DOC-001)"
+- **详细信息框**："small detail inset box showing zoomed view or wireframe preview"
+- **测量线**："dimension lines and measurement annotations"
+- **工程美学**："engineering drawing style", "technical drafting aesthetic", "architectural blueprint feel"
 
 **结构要求：**
 1. **必须以 "Technical blueprint-style infographic" 开头**
 2. **必须包含 "Central theme: [英文主题大写]"**
-3. **至少使用5个艺术表达词汇**
-4. 描述光影效果、动态感、氛围
-5. 创造视觉隐喻，让抽象概念"活"起来
-6. **必须包含中文文字指令：**
+3. **必须包含 "vintage/aged blueprint paper background"**
+4. **必须包含 "technical callouts and annotation lines"**
+5. **必须包含 "scale bar, legend box, version number in corners"**
+6. 使用艺术表达词汇增添美感
+7. **必须包含中文文字指令：**
    - "All text, labels, titles, and annotations must be in Simplified Chinese (简体中文)"
    - "Chinese characters must be clear, legible, and correctly rendered"
-7. 标题用中文
-8. **必须以 "4K resolution, ultra high quality, sharp details" 结尾**
-9. 包含 "small artistic signature in bottom right corner"
+8. 标题用中文
+9. **必须以 "4K resolution, ultra high quality, engineering aesthetic" 结尾**
 
-**示例 prompt（注意艺术感）：**
-"Technical blueprint-style infographic. Central theme: VISION CO-EVOLUTION. A breathtaking visualization where luminous magnetic field lines curve gracefully around a glowing central vision core, pulsing with ethereal teal light. Streams of golden energy represent human intent flowing and converging with AI generation, creating a shimmering resonance zone at the intersection. The background evokes aged engineering paper with a subtle grid, lending a sense of timeless craftsmanship. Title '愿景协同进化' rendered in bold cardinal red capitals at the apex, commanding attention. Delicate annotations '人类意图', 'AI生成器', '共振区' float like constellations in Simplified Chinese. The composition balances technical precision with artistic transcendence. All text must be in Simplified Chinese using Noto Sans SC. Small artistic signature in bottom right corner. 4K resolution, ultra high quality, sharp details."
+**示例 prompt（注意：艺术感 + 工程制图元素缺一不可）：**
+"Technical blueprint-style infographic. Central theme: TELEOLOGICAL ATTRACTOR REFINEMENT. Visual shows a stunning 3D terrain/mesh landscape in teal blue and gold, with luminous energy streams flowing toward the deepest valley. A glowing golden sphere rolls down into the most stable point labeled '功能真实点'. Gradient lines show the ethereal 'Descent into Truth'. Background is vintage aged blueprint paper with subtle grid texture. Technical callouts with annotation lines point to key elements: '不确定性势能', '迭代路径', '测试反馈'. Include a scale bar at bottom (SCALE 1:1000), legend box explaining colors, small wireframe preview inset in corner, and version number (V1.0). Title '目的论吸引子精炼' in dark red bold capitals. All text, labels, and annotations must be in Simplified Chinese (简体中文). Chinese characters must be crisp and well-rendered. 4K resolution, ultra high quality, engineering aesthetic."
 
 请直接输出JSON，不要有任何其他文字。
 '''
