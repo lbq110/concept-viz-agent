@@ -10,6 +10,8 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
 from lib.api import client
+from lib.registry import registry
+from config import DEFAULT_VISUAL_STYLE, VISUAL_STYLES
 
 
 class GenerateSkill:
@@ -19,18 +21,31 @@ class GenerateSkill:
     description = "使用AI生成概念图"
     usage = "/generate <prompt> [output_path]"
 
-    def __init__(self, output_dir: str = "output"):
+    def __init__(self, output_dir: str = "output", style: str = None):
         self.client = client
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
+        self.style_id = style or DEFAULT_VISUAL_STYLE
+        self.style_prefix = self._get_style_prefix()
 
-    def run(self, prompt: str, output_name: str = None) -> dict:
+    def _get_style_prefix(self) -> str:
+        """获取统一样式前缀"""
+        # 先尝试从 config 中的 VISUAL_STYLES 获取
+        if self.style_id in VISUAL_STYLES:
+            style = VISUAL_STYLES[self.style_id]
+            return style.get("style_prefix", "")
+        # 否则从 registry 获取
+        style = registry.get_visual_style(self.style_id)
+        return style.get("style_prefix", style.get("template", ""))
+
+    def run(self, prompt: str, output_name: str = None, use_style_prefix: bool = True) -> dict:
         """
         生成单张图像
 
         Args:
             prompt: 图像生成提示词
             output_name: 输出文件名（不含扩展名）
+            use_style_prefix: 是否添加统一样式前缀
 
         Returns:
             生成结果字典
@@ -40,10 +55,16 @@ class GenerateSkill:
 
         output_path = str(self.output_dir / output_name)
 
+        # 添加统一样式前缀
+        if use_style_prefix and self.style_prefix:
+            full_prompt = f"{self.style_prefix}\n\n=== IMAGE CONTENT ===\n{prompt}"
+        else:
+            full_prompt = prompt
+
         print(f"🖼️ 正在生成图像: {output_name}")
 
         try:
-            result = self.client.generate_image(prompt, output_path)
+            result = self.client.generate_image(full_prompt, output_path)
 
             if result.get("success"):
                 print(f"✓ 图像已保存: {result.get('output_path')}")

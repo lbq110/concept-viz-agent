@@ -15,14 +15,11 @@ from config import DEFAULT_VISUAL_STYLE
 
 DESIGN_PROMPT = '''你是一个专业的信息设计师，擅长将抽象概念转化为技术风格的可视化图表。
 
-**统一视觉风格要求：**
-- 背景: {background}
-- 标题: {title_color}, {title_font}
-- 主色调: {primary_color}
-- 辅色调: {secondary_color}
-- 强调色: {accent_color}
-- 整体风格: {style}
-- 水印: {watermark}
+**⚠️ 核心要求：统一视觉风格 ⚠️**
+你正在为一篇文章生成一系列概念图，所有图片必须保持完全一致的视觉风格！
+
+**统一样式规范（所有图片必须严格遵守）：**
+{style_prefix}
 
 **可用图表类型：**
 {chart_types}
@@ -35,7 +32,7 @@ DESIGN_PROMPT = '''你是一个专业的信息设计师，擅长将抽象概念�
 **任务：**
 为每个概念设计完整的图像生成提示词（英文），需要：
 1. 选择最合适的图表类型
-2. 设计具体的视觉元素
+2. 设计具体的视觉元素（必须使用上述统一配色）
 3. 规划布局和文字框
 4. 生成完整的图像生成提示词
 
@@ -53,7 +50,7 @@ DESIGN_PROMPT = '''你是一个专业的信息设计师，擅长将抽象概念�
         {{"label": "标签", "content": "内容"}}
       ],
       "key_quote": "关键引文（中文）",
-      "image_prompt": "完整的图像生成提示词（200-400词）"
+      "image_prompt": "完整的图像生成提示词（200-400词）- 不要包含样式前缀，只描述这张图的具体内容"
     }}
   ]
 }}
@@ -67,17 +64,13 @@ DESIGN_PROMPT = '''你是一个专业的信息设计师，擅长将抽象概念�
 - 图表中的文字必须是中文
 
 **提示词生成要求：**
-1. 以"Technical blueprint-style infographic"开头
-2. 明确描述背景、标题、主要视觉元素
-3. 包含颜色规范
-4. 描述文字框位置和内容
-5. **必须包含以下中文文字指令：**
+1. 描述这张图的具体内容（图表结构、元素、文字）
+2. 不要重复样式规范（会自动添加）
+3. **必须包含以下中文文字指令：**
    - "All text, labels, titles, and annotations must be in Simplified Chinese (简体中文)"
    - "Chinese characters must be clear, legible, and correctly rendered"
-   - "Use a clean Chinese font like Noto Sans SC, Source Han Sans, or Microsoft YaHei"
-6. 标题格式：用中文，如 "模块化规范：避免指令诅咒"
-7. 以风格描述结尾
-8. 添加 "4K resolution, ultra high quality, sharp details"
+   - "Use Noto Sans SC or Source Han Sans for Chinese text"
+4. 标题格式：用中文，如 "模块化规范：避免指令诅咒"
 
 请直接输出JSON，不要有任何其他文字。
 '''
@@ -103,6 +96,12 @@ class DesignSkill:
         """获取当前视觉风格"""
         return self.registry.get_visual_style(self.style_id)
 
+    def _get_style_prefix(self) -> str:
+        """获取统一样式前缀"""
+        style = self._get_style()
+        # 优先使用 style_prefix，否则使用 template
+        return style.get("style_prefix", style.get("template", ""))
+
     def run(self, mappings: list | dict) -> dict:
         """
         设计可视化方案
@@ -121,15 +120,10 @@ class DesignSkill:
             mappings = json.loads(mappings)
 
         style = self._get_style()
+        style_prefix = self._get_style_prefix()
+
         prompt = DESIGN_PROMPT.format(
-            background=style.get("description", "technical blueprint style"),
-            title_color="dark red capital letters",
-            title_font="Crimson Pro or similar bold serif font",
-            primary_color="teal blue (#2F337)",
-            secondary_color="warm brown/gold tones",
-            accent_color="deep red for emphasis",
-            style=style.get("name", "blueprint"),
-            watermark="small watermark in bottom right corner",
+            style_prefix=style_prefix,
             chart_types=self._get_chart_types_desc(),
             mappings=json.dumps(mappings, ensure_ascii=False, indent=2)
         )

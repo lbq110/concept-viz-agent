@@ -100,14 +100,59 @@ VISUAL_STYLES = {
     "blueprint": {
         "name": "技术蓝图风格",
         "description": "工程图纸风格，适合技术/学术内容",
+        # 统一样式前缀 - 会被添加到每张图片的 prompt 开头
+        "style_prefix": """CRITICAL STYLE REQUIREMENTS (MUST FOLLOW EXACTLY FOR ALL IMAGES IN THIS SERIES):
+
+=== BACKGROUND ===
+- Light beige/cream graph paper (#F5F0E1) with subtle 1cm grid lines in light gray (#E0DDD0)
+- Grid lines must be consistent across all images
+
+=== COLOR PALETTE (USE EXACT HEX CODES) ===
+- Background: #F5F0E1 (cream/beige)
+- Primary: #2A4858 (deep teal blue)
+- Secondary: #8B7355 (warm brown)
+- Accent: #C41E3A (cardinal red)
+- Text Primary: #2A4858 (teal)
+- Text Secondary: #5C4033 (dark brown)
+- Highlights: #D4AF37 (gold)
+
+=== TYPOGRAPHY ===
+- Title: Bold serif font (Crimson Pro), ALL CAPS, color #C41E3A, positioned at top center
+- Subtitles: Medium weight, #2A4858
+- Body text: Clean sans-serif (Noto Sans SC for Chinese), #333333
+- Labels: Small caps, #5C4033
+
+=== LAYOUT GRID ===
+- 16:9 aspect ratio
+- 5% margin on all sides
+- Title zone: top 12% of canvas
+- Main content: center 76% of canvas
+- Footer zone: bottom 12% of canvas
+
+=== CORNER SIGNATURE (BOTTOM RIGHT) ===
+- Small decorative element: compass rose or geometric pattern
+- Size: 3% of image width
+- Color: #8B7355 with 60% opacity
+- Position: 3% from right edge, 3% from bottom edge
+
+=== BORDER ===
+- Thin double-line border (outer: 2px #2A4858, inner: 1px #8B7355)
+- 2% padding from edge
+
+=== CONSISTENT ELEMENTS ===
+- All diagrams use the same line weights (thin: 1px, medium: 2px, thick: 4px)
+- All arrows use the same style (tapered, with small arrowheads)
+- All text boxes have rounded corners (radius: 8px) with subtle shadow
+
+""",
         "template": """Technical blueprint-style infographic on light beige/cream graph paper background with subtle grid lines.
 Title: "{title}" in dark red capital letters at the top, using Crimson Pro or similar bold serif font.
 {visual_description}
 Color palette:
 - Background: Light beige/cream (#F5F0E1) with subtle grid
-- Primary accent: Teal blue (#2F337)
-- Secondary: Warm brown/gold tones
-- Highlights: Deep red for titles and emphasis
+- Primary accent: Teal blue (#2A4858)
+- Secondary: Warm brown/gold tones (#8B7355)
+- Highlights: Deep red for titles and emphasis (#C41E3A)
 Style: Clean technical illustration, professional academic diagram aesthetic.
 {additional_elements}"""
     },

@@ -73,10 +73,13 @@ class ConceptVisualizerAgent:
 📚 可用技能 (Skills)
 ═══════════════════════════════════════════════════════════════
 
-/pipeline <文章路径> [输出目录] [--no-learn]
+/pipeline <文章路径> [输出目录] [--no-learn] [--style=样式ID]
     一键执行完整workflow，自动学习新框架并生成概念图
     示例: /pipeline article.md ./output
+    示例: /pipeline article.md --style=modern
     添加 --no-learn 可跳过框架学习
+    添加 --style=<ID> 可跳过交互式样式选择
+    可用样式: blueprint(默认), modern, academic, creative
 
 /discover <文章路径>
     🎓 从文章中发现新理论框架并自动扩充框架库
@@ -456,14 +459,19 @@ class ConceptVisualizerAgent:
             article_path = parts[0]
             output_dir = None
             auto_learn = True
+            style = None
 
             for part in parts[1:]:
                 if part == "--no-learn":
                     auto_learn = False
-                else:
+                elif part.startswith("--style="):
+                    style = part.split("=", 1)[1]
+                elif not part.startswith("--"):
                     output_dir = part
 
-            skill = PipelineSkill(output_dir, auto_learn=auto_learn)
+            # 如果指定了 style，则跳过交互选择
+            interactive_style = (style is None)
+            skill = PipelineSkill(output_dir, auto_learn=auto_learn, style=style, interactive_style=interactive_style)
             result = skill.run(article_path)
             self.context = result.get("steps", {})
             self.context["learning"] = result.get("learning", {})

@@ -25,10 +25,18 @@ class PipelineSkill:
     description = "一键执行完整的文章→图像workflow，同时自动学习新框架"
     usage = "/pipeline <文章文件路径> [输出目录] [--no-learn]"
 
-    def __init__(self, output_dir: str = None, auto_learn: bool = True):
+    def __init__(self, output_dir: str = None, auto_learn: bool = True, style: str = None, interactive_style: bool = True):
+        from config import DEFAULT_VISUAL_STYLE, VISUAL_STYLES
+
+        # 交互式选择样式
+        if interactive_style and style is None:
+            self.style = self._select_style_interactive(VISUAL_STYLES, DEFAULT_VISUAL_STYLE)
+        else:
+            self.style = style or DEFAULT_VISUAL_STYLE
+
         self.analyze = AnalyzeSkill()
         self.map_framework = MapFrameworkSkill()
-        self.design = DesignSkill()
+        self.design = DesignSkill(style=self.style)
         self.discover = DiscoverSkill(auto_save=True)
         self.auto_learn = auto_learn
 
@@ -40,7 +48,42 @@ class PipelineSkill:
             self.output_dir = Path(f"output/run_{timestamp}")
 
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        self.generate = GenerateSkill(str(self.output_dir / "images"))
+        self.generate = GenerateSkill(str(self.output_dir / "images"), style=self.style)
+
+    def _select_style_interactive(self, styles: dict, default: str) -> str:
+        """交互式选择视觉风格"""
+        print("\n" + "=" * 50)
+        print("🎨 选择视觉风格")
+        print("=" * 50)
+
+        style_list = list(styles.keys())
+        for i, style_id in enumerate(style_list, 1):
+            style = styles[style_id]
+            name = style.get("name", style_id)
+            desc = style.get("description", "")
+            default_mark = " (默认)" if style_id == default else ""
+            print(f"  {i}. {name}{default_mark}")
+            print(f"     {desc}")
+
+        print()
+        while True:
+            try:
+                choice = input(f"请选择 [1-{len(style_list)}，直接回车使用默认]: ").strip()
+                if choice == "":
+                    selected = default
+                    break
+                idx = int(choice) - 1
+                if 0 <= idx < len(style_list):
+                    selected = style_list[idx]
+                    break
+                else:
+                    print(f"请输入 1-{len(style_list)} 之间的数字")
+            except ValueError:
+                print("请输入有效数字")
+
+        print(f"✓ 已选择: {styles[selected].get('name', selected)}")
+        print("=" * 50 + "\n")
+        return selected
 
     def run(self, article_path: str, generate_images: bool = True) -> dict:
         """
@@ -68,6 +111,7 @@ class PipelineSkill:
         print("=" * 60)
         print(f"输入: {article_path}")
         print(f"输出: {self.output_dir}")
+        print(f"视觉风格: {self.style}")
         print(f"自动学习: {'✓ 开启' if self.auto_learn else '✗ 关闭'}")
         print("=" * 60)
 
