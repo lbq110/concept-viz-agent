@@ -89,10 +89,15 @@ C) "Comparison layout: two panels side by side"
 4. 描述文本框的位置和内容
 5. 包含 "Light cream graph paper background (#F5F0E1) with subtle grid"
 6. 包含 "Small logo in bottom right corner"
-7. 以 "Clean technical style, educational infographic. All text in Simplified Chinese." 结尾
+7. **必须包含中文质量要求：**
+   - "All text in Simplified Chinese (简体中文)"
+   - "Chinese characters must be crystal clear, perfectly formed, and correctly rendered"
+   - "Use clean Chinese fonts like Noto Sans SC"
+8. **必须以以下内容结尾：**
+   "4K ultra-high resolution, sharp details. Clean technical style, educational infographic."
 
-**示例 prompt（注意：扁平风格 + 文本框 + 分栏布局）：**
-"Technical infographic in Intuition Machine style. Title: 'THE AGAPISTIC ALTERNATIVE' in dark maroon ALL CAPS at top, with subtitle 'Alignment via Attraction' below. Split layout: LEFT side shows a flat 2D diagram with a brown triangle on the left connected by clean teal parallel curves (like magnetic field lines) flowing toward a teal circle labeled 'THE IDEAL (MAGNETIC CENTER)' on the right. The curves represent 'Internal Desire / Sympathy'. RIGHT side contains three text boxes with light cream backgrounds: Box 1 header 'Definition:' explains Agapism concept; Box 2 header 'Mechanism:' shows the formula; Box 3 header 'The Goal:' describes the objective. Light cream graph paper background (#F5F0E1) with subtle grid. Colors: teal #2F337, brown #8B7355, maroon titles. Small logo in bottom right corner. Clean technical style, educational infographic. All text in Simplified Chinese."
+**示例 prompt（注意：扁平风格 + 文本框 + 分栏布局 + 4K + 中文要求）：**
+"Technical infographic in Intuition Machine style. Title: 'THE AGAPISTIC ALTERNATIVE' in dark maroon ALL CAPS at top, with subtitle 'Alignment via Attraction' below. Split layout: LEFT side shows a flat 2D diagram with a brown triangle on the left connected by clean teal parallel curves (like magnetic field lines) flowing toward a teal circle labeled 'THE IDEAL (MAGNETIC CENTER)' on the right. The curves represent 'Internal Desire / Sympathy'. RIGHT side contains three text boxes with light cream backgrounds: Box 1 header 'Definition:' explains Agapism concept; Box 2 header 'Mechanism:' shows the formula; Box 3 header 'The Goal:' describes the objective. Light cream graph paper background (#F5F0E1) with subtle grid. Colors: teal #2F337, brown #8B7355, maroon titles. Small logo in bottom right corner. All text in Simplified Chinese (简体中文). Chinese characters must be crystal clear, perfectly formed, and correctly rendered. Use clean Chinese fonts like Noto Sans SC. 4K ultra-high resolution, sharp details. Clean technical style, educational infographic."
 
 请直接输出JSON，不要有任何其他文字。
 '''
