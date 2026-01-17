@@ -124,8 +124,10 @@ class GoogleProvider(BaseProvider):
 
                     if output_path:
                         ext = "png" if "png" in mime_type else "jpg"
-                        if not output_path.endswith(f".{ext}"):
-                            output_path = f"{output_path}.{ext}"
+                        # 移除已有的图片扩展名，然后添加正确的扩展名
+                        import re
+                        output_path = re.sub(r'\.(png|jpg|jpeg)$', '', output_path, flags=re.IGNORECASE)
+                        output_path = f"{output_path}.{ext}"
 
                         with open(output_path, "wb") as f:
                             f.write(base64.b64decode(image_data))
