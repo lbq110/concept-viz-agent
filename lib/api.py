@@ -97,13 +97,17 @@ class GoogleProvider(BaseProvider):
             "X-goog-api-key": self.api_key
         }
 
-        # 添加4K分辨率和宽高比指令到prompt
-        enhanced_prompt = f"{prompt}\n\nIMPORTANT: Generate in 4K ultra-high resolution (3840x2160 or higher). Ensure all Chinese text is crystal clear, sharp, and correctly rendered."
+        # 添加中文清晰度指令到prompt
+        enhanced_prompt = f"{prompt}\n\nIMPORTANT: Ensure all Chinese text (简体中文) is crystal clear, sharp, and correctly rendered with proper stroke details."
 
         payload = {
             "contents": [{"parts": [{"text": enhanced_prompt}]}],
             "generationConfig": {
-                "responseModalities": ["image", "text"]
+                "responseModalities": ["image", "text"],
+                "imageConfig": {
+                    "aspectRatio": aspect_ratio,
+                    "imageSize": "4K"
+                }
             }
         }
 
