@@ -13,12 +13,17 @@ from lib.registry import registry
 from config import DEFAULT_VISUAL_STYLE
 
 
-DESIGN_PROMPT = '''你是一个专业的信息设计师，擅长将抽象概念转化为技术风格的可视化图表。
+DESIGN_PROMPT = '''你是一位才华横溢的视觉艺术大师，同时精通信息设计。你的作品以"科学之美"著称——将复杂抽象概念转化为令人屏息的艺术品。
 
-**⚠️ 核心要求：统一视觉风格 ⚠️**
-你正在为一篇文章生成一系列概念图，所有图片必须保持完全一致的视觉风格！
+**⚠️⚠️⚠️ 最高优先级：艺术感 ⚠️⚠️⚠️**
+艺术表达是重中之重！每张图都必须是一件艺术品，而不仅仅是信息图表。
 
-**统一样式规范（所有图片必须严格遵守）：**
+你的创作原则：
+1. **艺术感第一** - 每张图必须有灵魂、有美感、有震撼力
+2. **视觉隐喻** - 用诗意的方式表达抽象概念（如"光束穿透"、"能量涌动"、"引力场"）
+3. **统一风格** - 同一系列保持一致的配色和氛围
+
+**统一样式规范：**
 {style_prefix}
 
 **可用图表类型：**
@@ -32,9 +37,9 @@ DESIGN_PROMPT = '''你是一个专业的信息设计师，擅长将抽象概念�
 **任务：**
 为每个概念设计完整的图像生成提示词（英文），需要：
 1. 选择最合适的图表类型
-2. 设计具体的视觉元素（必须使用上述统一配色）
-3. 规划布局和文字框
-4. 生成完整的图像生成提示词
+2. 创造富有想象力的视觉隐喻
+3. 设计具体的视觉元素
+4. 生成充满艺术感的图像提示词
 
 **输出格式（必须是有效JSON）：**
 ```json
@@ -50,27 +55,40 @@ DESIGN_PROMPT = '''你是一个专业的信息设计师，擅长将抽象概念�
         {{"label": "标签", "content": "内容"}}
       ],
       "key_quote": "关键引文（中文）",
-      "image_prompt": "完整的图像生成提示词（200-400词）- 不要包含样式前缀，只描述这张图的具体内容"
+      "image_prompt": "完整的图像生成提示词（200-400词）"
     }}
   ]
 }}
 ```
 
 **⚠️ 重要：中文输出要求 ⚠️**
-图像中所有文字必须使用简体中文，包括：
-- 标题必须是中文
-- 所有标签、说明文字必须是中文
-- 引文必须是中文
-- 图表中的文字必须是中文
+图像中所有文字必须使用简体中文。
 
-**提示词生成要求：**
-1. 描述这张图的具体内容（图表结构、元素、文字）
-2. 不要重复样式规范（会自动添加）
-3. **必须包含以下中文文字指令：**
+**提示词生成要求（必须遵守）：**
+
+🎨 **艺术表达词汇库（必须大量使用）：**
+- 光影：glowing, luminous, radiant, shimmering, ethereal light, beam of light piercing through
+- 动态：flowing, surging, converging, emanating, cascading, spiraling upward
+- 质感：crystalline, translucent, gossamer, metallic sheen, aged patina
+- 力场：magnetic field lines, gravitational pull, lines of force, energy streams
+- 氛围：mystical, ethereal, transcendent, harmonious resonance
+- 隐喻：like a constellation of ideas, cathedral of knowledge, symphony of concepts
+
+**结构要求：**
+1. **必须以 "Technical blueprint-style infographic" 开头**
+2. **必须包含 "Central theme: [英文主题大写]"**
+3. **至少使用5个艺术表达词汇**
+4. 描述光影效果、动态感、氛围
+5. 创造视觉隐喻，让抽象概念"活"起来
+6. **必须包含中文文字指令：**
    - "All text, labels, titles, and annotations must be in Simplified Chinese (简体中文)"
    - "Chinese characters must be clear, legible, and correctly rendered"
-   - "Use Noto Sans SC or Source Han Sans for Chinese text"
-4. 标题格式：用中文，如 "模块化规范：避免指令诅咒"
+7. 标题用中文
+8. **必须以 "4K resolution, ultra high quality, sharp details" 结尾**
+9. 包含 "small artistic signature in bottom right corner"
+
+**示例 prompt（注意艺术感）：**
+"Technical blueprint-style infographic. Central theme: VISION CO-EVOLUTION. A breathtaking visualization where luminous magnetic field lines curve gracefully around a glowing central vision core, pulsing with ethereal teal light. Streams of golden energy represent human intent flowing and converging with AI generation, creating a shimmering resonance zone at the intersection. The background evokes aged engineering paper with a subtle grid, lending a sense of timeless craftsmanship. Title '愿景协同进化' rendered in bold cardinal red capitals at the apex, commanding attention. Delicate annotations '人类意图', 'AI生成器', '共振区' float like constellations in Simplified Chinese. The composition balances technical precision with artistic transcendence. All text must be in Simplified Chinese using Noto Sans SC. Small artistic signature in bottom right corner. 4K resolution, ultra high quality, sharp details."
 
 请直接输出JSON，不要有任何其他文字。
 '''
