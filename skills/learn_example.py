@@ -12,6 +12,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from lib.api import GeminiClient
 from lib.registry import Registry
+from config import LOCKED_STYLE_IDS
 from .analyze import AnalyzeSkill
 from .map_framework import MapFrameworkSkill
 from .design import DesignSkill
@@ -377,13 +378,18 @@ class LearnExampleSkill:
                 candidates["has_new"] = True
                 print(f"  📊 候选图表: {chart.get('name')} ({chart_id})")
 
-        # 检查新视觉风格
+        # 检查新视觉风格（跳过锁定的默认样式）
         for style in analysis.get("visual_styles", []):
             style_id = style.get("id")
-            if style_id and style_id not in self.registry.visual_styles:
-                candidates["styles"].append(style)
-                candidates["has_new"] = True
-                print(f"  🎨 候选风格: {style.get('name')} ({style_id})")
+            if style_id:
+                # 跳过锁定的默认样式
+                if style_id in LOCKED_STYLE_IDS:
+                    print(f"  ⚠️ 跳过锁定样式: {style_id} (默认样式不可覆盖)")
+                    continue
+                if style_id not in self.registry.visual_styles:
+                    candidates["styles"].append(style)
+                    candidates["has_new"] = True
+                    print(f"  🎨 候选风格: {style.get('name')} ({style_id})")
 
         return candidates
 
@@ -685,14 +691,19 @@ class LearnExampleSkill:
                 result["new_charts"].append(chart)
                 print(f"  📊 新增图表: {chart.get('name')} ({chart_id})")
 
-        # 学习新视觉风格
+        # 学习新视觉风格（跳过锁定的默认样式）
         for style in analysis.get("visual_styles", []):
             style_id = style.get("id")
-            if style_id and style_id not in self.registry.visual_styles:
-                self.registry.add_visual_style(style_id, style, persist=True)
-                result["styles_added"] += 1
-                result["new_styles"].append(style)
-                print(f"  🎨 新增风格: {style.get('name')} ({style_id})")
+            if style_id:
+                # 跳过锁定的默认样式
+                if style_id in LOCKED_STYLE_IDS:
+                    print(f"  ⚠️ 跳过锁定样式: {style_id} (默认样式不可覆盖)")
+                    continue
+                if style_id not in self.registry.visual_styles:
+                    self.registry.add_visual_style(style_id, style, persist=True)
+                    result["styles_added"] += 1
+                    result["new_styles"].append(style)
+                    print(f"  🎨 新增风格: {style.get('name')} ({style_id})")
 
         if result["frameworks_added"] == 0 and result["charts_added"] == 0 and result["styles_added"] == 0:
             print("  ℹ 未发现新内容，现有库已包含这些知识")
