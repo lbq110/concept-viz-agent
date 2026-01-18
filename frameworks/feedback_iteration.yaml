@@ -21,3 +21,7 @@ visual_elements:
 - 流程图
 - 数据分析图
 - 用户图标
+canonical_chart: cycle
+suggested_charts:
+- flowchart
+- timeline

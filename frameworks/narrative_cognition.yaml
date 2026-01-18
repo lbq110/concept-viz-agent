@@ -1,0 +1,24 @@
+canonical_chart: flowchart
+confidence: 0.9
+description: 大脑倾向于将信息组织成包含“转变”的故事结构，通过识别冲突、放大痛苦和提供解决方案来处理和保留信息。
+description_en: The human mind naturally processes and retains information through
+  narrative structures centered on transformation, typically moving from a problem
+  to a solution.
+discovered_at: '2026-01-17T21:29:09.738595'
+keywords:
+- story engine
+- transformation
+- problem-solution
+- attention
+name: 叙事认知 (Story Engine)
+name_en: Narrative Cognition
+origin: 认知心理学/叙事学
+source_quote: The mind is a story engine. Humans can't help but pay attention to a
+  story... The foundation of a story is transformation.
+suggested_charts:
+- cycle
+- timeline
+use_when: 需要通过情感共鸣和逻辑闭环吸引观众注意力并传递复杂观点时。
+visual_elements:
+- transformation arc
+- tension curve

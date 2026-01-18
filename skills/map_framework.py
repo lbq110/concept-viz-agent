@@ -23,6 +23,7 @@ MAP_PROMPT = '''你是一个跨学科理论家，擅长将概念映射到科学�
 1. 解释映射关系
 2. 生成一个基于框架的新标题（全大写英文）
 3. 提供理论框架带来的新洞察
+4. 注意框架的推荐图表类型，如果框架有推荐图表，请在输出中包含
 
 **输入概念：**
 ```json
@@ -42,7 +43,9 @@ MAP_PROMPT = '''你是一个跨学科理论家，擅长将概念映射到科学�
       "new_title": "THE NEW TITLE IN CAPS",
       "subtitle": "可选的副标题",
       "insight": "理论框架带来的新洞察（中文）",
-      "visual_metaphor": "建议的视觉隐喻"
+      "visual_metaphor": "建议的视觉隐喻",
+      "recommended_chart": "框架推荐的图表类型（如有）",
+      "alternative_charts": ["备选图表类型1", "备选图表类型2"]
     }}
   ]
 }}
@@ -99,11 +102,30 @@ class MapFrameworkSkill:
             if "```json" in response:
                 json_str = response.split("```json")[1].split("```")[0]
             elif "```" in response:
-                json_str = response.split("```")[1].split("```")[0]
+                # 处理 JSON 后面带有 ``` 的情况
+                json_str = response.split("```")[0] if response.strip().startswith("{") else response.split("```")[1].split("```")[0]
             else:
                 json_str = response
 
+            # 清理可能的尾部 ```
+            json_str = json_str.strip()
+            if json_str.endswith("```"):
+                json_str = json_str[:-3].strip()
+
             result = json.loads(json_str.strip())
+
+            # 补充图表推荐：如果LLM没有返回，从Registry获取
+            for mapping in result.get('mappings', []):
+                framework_id = mapping.get('framework')
+                if framework_id:
+                    chart_rec = self.registry.get_framework_chart_recommendation(framework_id)
+                    # 如果LLM没有返回recommended_chart，使用Registry的
+                    if not mapping.get('recommended_chart') and chart_rec.get('canonical_chart'):
+                        mapping['recommended_chart'] = chart_rec['canonical_chart']
+                    # 如果LLM没有返回alternative_charts，使用Registry的
+                    if not mapping.get('alternative_charts') and chart_rec.get('suggested_charts'):
+                        mapping['alternative_charts'] = chart_rec['suggested_charts']
+
             print(f"✓ 完成 {len(result.get('mappings', []))} 个概念的框架映射")
             return result
 
@@ -134,6 +156,13 @@ class MapFrameworkSkill:
                 f"**洞察**: {m.get('insight')}",
                 "",
                 f"**视觉隐喻**: {m.get('visual_metaphor')}",
+            ])
+            # 添加图表推荐信息
+            if m.get('recommended_chart'):
+                lines.append(f"**推荐图表**: {m.get('recommended_chart')}")
+            if m.get('alternative_charts'):
+                lines.append(f"**备选图表**: {', '.join(m.get('alternative_charts'))}")
+            lines.extend([
                 "",
                 "---",
                 ""

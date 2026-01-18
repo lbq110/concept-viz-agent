@@ -1,0 +1,26 @@
+canonical_chart: cycle
+confidence: 0.9
+description: 利用社交媒体的反馈指标（点击量、互动、私信）作为客观过滤器，从大量的思想碎片中筛选并验证出最具价值的“核心思想”。
+description_en: Using social media engagement metrics (views, interactions, DMs) as
+  an objective filter to identify and validate the most valuable 'core ideas' from
+  a larger body of work.
+discovered_at: '2026-01-17T21:58:04.889060'
+keywords:
+- engagement
+- feedback loop
+- validation
+- metrics
+- data-driven
+name: 算法化思想验证 (Algorithmic Idea Validation)
+name_en: Algorithmic Idea Validation
+origin: Digital Content Strategy / Dan Koe
+source_quote: It's obvious which ideas are the most valuable. It's obvious which ideas
+  have the most views or have led to the most DMs about how this 'changed their life.'
+suggested_charts:
+- flowchart
+- funnel
+use_when: 需要从大量创作中确定哪些观点最值得深入发展和重复表达时。
+visual_elements:
+- funnel
+- feedback loop
+- heat map

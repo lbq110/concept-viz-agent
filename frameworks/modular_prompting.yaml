@@ -23,3 +23,7 @@ use_when: 当需要AI代理执行复杂任务，且直接给出大量指令容�
 visual_elements:
 - Flowchart
 - Hierarchical diagram
+canonical_chart: flowchart
+suggested_charts:
+- network
+- pyramid

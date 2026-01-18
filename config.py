@@ -137,31 +137,23 @@ Professional engineering blueprint with rich visual details.
 - English subtitle below in smaller text
 - Bold serif font
 
-=== CORNER DECORATIONS (ADD VISUAL RICHNESS) ===
-- Top corners: Technical stamps, watermarks, or classification marks
-- Bottom left: Angle diagrams, measurement references (45° ANGLE, etc.)
-- Bottom right: Professional title block with:
-  - PROJECT name
-  - DRAWING NO: XX-SPEC-001
-  - SCALE: 1:10
-  - REV/DATE info
+=== CORNER DECORATIONS (MINIMAL) ===
+- Bottom left: Small conceptual icons or thematic symbols related to the topic (optional)
+- NO title blocks, stamps, or watermarks in corners
 
 === DIAGRAM STYLE ===
 - Can be 2D or isometric 3D technical illustration
 - Teal (#2F337) for main structural elements
 - Brown/gold for secondary elements
-- Detailed dimension lines with measurements (1200mm, 500mm, etc.)
 - Technical callout lines pointing to labeled parts
 - Small icons and symbols to enrich the visual
+- MORE content annotations explaining the concept from the article
 
 === ANNOTATIONS ===
 - Bilingual labels: English term + Chinese translation
-- Technical measurements with dimension lines
 - Arrow callouts pointing to key features
-
-=== BOTTOM ELEMENT ===
-- Professional drafting title block in bottom right corner
-- Contains: Project name, Drawing number, Scale, Revision
+- Include key insights and quotes from the original article
+- Add explanatory text boxes with article-specific content
 
 """,
         "template": """Technical blueprint-style infographic on light beige/cream graph paper background with subtle grid lines.
@@ -232,7 +224,9 @@ DEFAULT_FRAMEWORKS = {
         "keywords": ["attraction", "love", "internal motivation", "identity", "desire", "sympathy"],
         "anti_pattern": "anancism",
         "visual_elements": ["magnetic field lines", "attractor basin", "flowing curves", "convergence"],
-        "use_when": "概念涉及内在动机、价值认同、自发趋向"
+        "use_when": "概念涉及内在动机、价值认同、自发趋向",
+        "canonical_chart": "attractor",
+        "suggested_charts": ["network", "terrain"]
     },
     "anancism": {
         "name": "Anancism (必然论)",
@@ -243,7 +237,9 @@ DEFAULT_FRAMEWORKS = {
         "keywords": ["rules", "constraints", "mechanical", "rigid", "hardcoded", "necessity"],
         "anti_pattern": "agapism",
         "visual_elements": ["geometric lattice", "rigid structures", "interlocking beams", "grid"],
-        "use_when": "概念涉及硬性规则、机械约束、强制执行"
+        "use_when": "概念涉及硬性规则、机械约束、强制执行",
+        "canonical_chart": "matrix",
+        "suggested_charts": ["flowchart", "network"]
     },
     "goodhart": {
         "name": "Goodhart's Law (古德哈特定律)",
@@ -253,7 +249,9 @@ DEFAULT_FRAMEWORKS = {
         "description_en": "When a measure becomes a target, it ceases to be a good measure",
         "keywords": ["metric", "optimization", "gaming", "proxy", "gap", "target"],
         "visual_elements": ["diverging lines", "gap visualization", "optimization curves", "metric vs goal"],
-        "use_when": "概念涉及优化陷阱、指标失效、目标与度量的偏离"
+        "use_when": "概念涉及优化陷阱、指标失效、目标与度量的偏离",
+        "canonical_chart": "comparison",
+        "suggested_charts": ["terrain", "timeline"]
     },
     "moloch": {
         "name": "Moloch Trap (莫洛克陷阱)",
@@ -263,7 +261,9 @@ DEFAULT_FRAMEWORKS = {
         "description_en": "Coordination failure where individual rationality leads to collective irrationality",
         "keywords": ["coordination", "collective", "trap", "race", "competition", "tragedy"],
         "visual_elements": ["converging arrows to pit", "trap structure", "race to bottom", "prisoners dilemma"],
-        "use_when": "概念涉及协调失败、竞争困境、集体行动问题"
+        "use_when": "概念涉及协调失败、竞争困境、集体行动问题",
+        "canonical_chart": "terrain",
+        "suggested_charts": ["network", "cycle"]
     },
     "participatory_knowing": {
         "name": "Participatory Knowing (参与式认知)",
@@ -273,7 +273,9 @@ DEFAULT_FRAMEWORKS = {
         "description_en": "Understanding through identity and participation rather than propositional knowledge",
         "keywords": ["identity", "being", "participation", "embodiment", "becoming"],
         "visual_elements": ["interconnected nodes", "identity core", "radiating connections", "nested circles"],
-        "use_when": "概念涉及身份构建、内化价值、存在性理解"
+        "use_when": "概念涉及身份构建、内化价值、存在性理解",
+        "canonical_chart": "venn",
+        "suggested_charts": ["network", "attractor"]
     },
     "multi_scale": {
         "name": "Multi-Scale Alignment (多尺度对齐)",
@@ -283,7 +285,9 @@ DEFAULT_FRAMEWORKS = {
         "description_en": "Coordination and constraint propagation across different hierarchical levels",
         "keywords": ["hierarchy", "levels", "priority", "constraint", "flow", "scale"],
         "visual_elements": ["pyramid", "layered structure", "bidirectional arrows", "nested hierarchy"],
-        "use_when": "概念涉及层级结构、优先级排序、跨层级协调"
+        "use_when": "概念涉及层级结构、优先级排序、跨层级协调",
+        "canonical_chart": "pyramid",
+        "suggested_charts": ["flowchart", "network"]
     },
     "circuit_breaker": {
         "name": "Circuit Breaker (断路器模式)",
@@ -293,7 +297,9 @@ DEFAULT_FRAMEWORKS = {
         "description_en": "Detecting anomalies and interrupting to prevent cascading failures",
         "keywords": ["detect", "stop", "reset", "monitor", "interrupt", "safeguard"],
         "visual_elements": ["flowchart with decision", "stop sign", "feedback loop", "monitoring"],
-        "use_when": "概念涉及安全机制、自检系统、异常处理"
+        "use_when": "概念涉及安全机制、自检系统、异常处理",
+        "canonical_chart": "flowchart",
+        "suggested_charts": ["cycle", "comparison"]
     },
     "attractor": {
         "name": "Attractor Dynamics (吸引子动力学)",
@@ -303,7 +309,9 @@ DEFAULT_FRAMEWORKS = {
         "description_en": "System's natural tendency to evolve toward certain stable states",
         "keywords": ["basin", "valley", "landscape", "salience", "convergence", "stability"],
         "visual_elements": ["3D terrain", "valleys and peaks", "wireframe surface", "basin of attraction"],
-        "use_when": "概念涉及稳定状态、自然趋向、能量最小化"
+        "use_when": "概念涉及稳定状态、自然趋向、能量最小化",
+        "canonical_chart": "terrain",
+        "suggested_charts": ["attractor", "network"]
     }
 }
 

@@ -1,0 +1,25 @@
+canonical_chart: matrix
+confidence: 0.95
+description: 通过识别和反复打磨8-10个核心思想，建立一个可复用的思想库，作为跨场景沟通的锚点。
+description_en: Developing a pool of 8-10 core ideas that are continuously refined
+  and can be connected to any topic, serving as a foundation for all communication.
+discovered_at: '2026-01-17T17:35:54.309722'
+keywords:
+- core ideas
+- repetition
+- refinement
+- body of work
+- anchor points
+name: 核心思想专辑 (Inner Album of Greatest Hits)
+name_en: Inner Album of Greatest Hits
+origin: Dan Koe
+source_quote: If you want to articulate yourself intelligently, you need a pool of
+  8-10 of your biggest ideas that can be connected to almost any topic.
+suggested_charts:
+- network
+- pyramid
+use_when: 准备演讲、撰写文章或参加播客，需要快速调取高质量观点时。
+visual_elements:
+- music album cover
+- central nodes
+- collection

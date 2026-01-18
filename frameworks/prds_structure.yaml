@@ -22,3 +22,7 @@ visual_elements:
 - 表格
 - 分块布局
 - 标题和副标题
+canonical_chart: flowchart
+suggested_charts:
+- pyramid
+- matrix

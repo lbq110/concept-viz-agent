@@ -21,3 +21,7 @@ use_when: 在涉及多个利益相关者的AI系统中，需要明确不同委�
 visual_elements:
 - pyramid
 - nested circles
+canonical_chart: pyramid
+suggested_charts:
+- network
+- comparison

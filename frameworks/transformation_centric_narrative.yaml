@@ -1,0 +1,24 @@
+canonical_chart: flowchart
+confidence: 0.85
+description: 将叙事的本质简化为“转化”，通过从问题状态到解决方案状态的跨越来吸引和保持读者的注意力。
+description_en: Simplifying the essence of storytelling to 'transformation,' capturing
+  attention by bridging the gap between a problem state and a solution state.
+discovered_at: '2026-01-17T21:58:04.890129'
+keywords:
+- transformation
+- problem-solution
+- story engine
+- arc
+name: 以转化为中心的叙事 (Transformation-Centric Narrative)
+name_en: Transformation-Centric Narrative
+origin: Storytelling / Copywriting
+source_quote: The foundation of a story is transformation. This does not have to be
+  a transformation about a specific person... A transformation can be as simple as
+  introducing a problem and giving a solution.
+suggested_charts:
+- timeline
+use_when: 需要快速构建有吸引力的短文或演讲开头时。
+visual_elements:
+- bridge
+- vector arrow
+- before-after

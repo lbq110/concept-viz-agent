@@ -1,0 +1,23 @@
+canonical_chart: cycle
+confidence: 0.92
+description: 将写作视为一种认知脚手架，通过外部化思维来理顺逻辑和发现新见解，而非仅仅是记录已有的想法。
+description_en: The conceptualization of writing as a tool for cognition and problem-solving,
+  rather than just a medium for transcription.
+discovered_at: '2026-01-17T17:35:54.316409'
+keywords:
+- cognitive scaffolding
+- externalization
+- meta-cognition
+- puzzle solving
+name: 写作即思考 (Writing as Thinking)
+name_en: Writing as Thinking
+origin: 认知心理学 / 现象学
+source_quote: If thinking were a puzzle, writing is putting the pieces together. ...
+  writing teaches you how to think.
+suggested_charts:
+- flowchart
+- network
+use_when: 面对复杂问题或感到思维混乱，需要厘清逻辑时。
+visual_elements:
+- puzzle pieces fitting together
+- feedback loop between hand and head

@@ -20,3 +20,7 @@ use_when: 在需要控制AI行为以防止潜在风险，同时又希望AI能够
 visual_elements:
 - 金字塔形结构，不同层级代表不同类型的约束
 - 流程图，展示AI如何根据约束做出决策
+canonical_chart: pyramid
+suggested_charts:
+- flowchart
+- comparison

@@ -1,0 +1,26 @@
+canonical_chart: network
+confidence: 0.9
+description: 认为所有现代媒体形式（视频、播客、社交媒体）的底层逻辑都是写作，掌握写作即掌握了注意力的分配权和说服力。
+description_en: The theory that all modern media forms (video, podcasts, social) are
+  fundamentally based on writing; mastering writing is mastering the distribution
+  of attention and persuasion.
+discovered_at: '2026-01-17T22:05:56.752031'
+keywords:
+- leverage
+- foundation
+- attention economy
+- persuasion
+name: 写作中心化媒体杠杆
+name_en: Writing-Centric Media Leverage
+origin: Dan Koe / 创作者经济
+source_quote: the foundation of media (which is how you or your employer gets your
+  work in front of people and persuades them to care about your work, so you can survive
+  and get paid) is writing.
+suggested_charts:
+- hierarchy
+- flowchart
+use_when: 分析个人品牌价值、制定多渠道内容策略时
+visual_elements:
+- foundation block
+- radiating nodes
+- amplification

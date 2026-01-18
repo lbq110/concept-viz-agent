@@ -23,3 +23,7 @@ use_when: 当需要利用AI Agent完成复杂的软件工程任务，并且规�
 visual_elements:
 - 循环图，体现AI、开发者和规范之间的互动
 - 版本控制图，体现规范的演化
+canonical_chart: cycle
+suggested_charts:
+- flowchart
+- network

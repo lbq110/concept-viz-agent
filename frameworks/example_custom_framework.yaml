@@ -29,6 +29,11 @@ visual_elements:
 
 use_when: "概念涉及系统涌现、自组织、复杂性从简单中产生"
 
+canonical_chart: network
+suggested_charts:
+  - pyramid
+  - terrain
+
 # 可选：示例引文
 example_quotes:
   - "More is different"

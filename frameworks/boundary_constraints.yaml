@@ -19,3 +19,7 @@ visual_elements:
 - 红线
 - 禁止符号
 - 安全防护
+canonical_chart: comparison
+suggested_charts:
+- flowchart
+- matrix

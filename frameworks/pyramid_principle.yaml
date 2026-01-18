@@ -1,0 +1,23 @@
+canonical_chart: pyramid
+confidence: 1.0
+description: 一种结构化沟通框架，主张先说结论，再提供支撑论点，最后给出详细证据。
+description_en: A communication framework that structures ideas hierarchically, starting
+  with the main conclusion followed by supporting arguments and evidence.
+discovered_at: '2026-01-17T17:35:54.314473'
+keywords:
+- hierarchy
+- logical structure
+- answer-first
+- top-down communication
+name: 金字塔原理 (The Pyramid Principle)
+name_en: The Pyramid Principle
+origin: Barbara Minto / McKinsey
+source_quote: The Pyramid Principle is a communication framework that structures ideas
+  in a hierarchical, logical way to make information more palatable and persuasive.
+suggested_charts:
+- network
+- comparison
+use_when: 撰写专业报告、进行商务汇报或回答复杂问题时。
+visual_elements:
+- pyramid layers
+- top-down tree diagram

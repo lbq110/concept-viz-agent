@@ -1,0 +1,24 @@
+canonical_chart: flowchart
+confidence: 0.98
+description: 一种叙事结构，通过陈述痛点、放大后果来引发共鸣，最后提供解决方案以完成转变。
+description_en: A narrative structure that starts with a relatable problem, illustrates
+  its negative consequences to increase perceived value, and concludes with a solution.
+discovered_at: '2026-01-17T17:35:54.313374'
+keywords:
+- transformation
+- story engine
+- persuasion
+- hook
+- agitation
+name: 问题-放大-解决方案 (Problem-Amplify-Solution)
+name_en: Problem-Amplify-Solution (PAS)
+origin: 营销文案学 (Copywriting)
+source_quote: Problem – state a relatable problem... Amplify – illustrate how that
+  problem leads to a negative outcome... Solution – state the solution to the problem.
+suggested_charts:
+- terrain
+- timeline
+use_when: 需要快速吸引听众注意力并建立逻辑驱动的叙事时。
+visual_elements:
+- downward slope followed by upward arrow
+- tension-resolution arc

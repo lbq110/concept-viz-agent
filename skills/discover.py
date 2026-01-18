@@ -51,6 +51,8 @@ DISCOVER_PROMPT = '''你是一位博学的跨学科学者，精通哲学、科�
       "keywords": ["keyword1", "keyword2", "keyword3"],
       "visual_elements": ["suggested visual element 1", "suggested visual element 2"],
       "use_when": "适用场景（中文）",
+      "canonical_chart": "推荐的图表类型（如 pyramid, flowchart, network, cycle, terrain, attractor, comparison, venn, matrix, timeline）",
+      "suggested_charts": ["备选图表类型1", "备选图表类型2"],
       "is_new": true,
       "confidence": 0.9,
       "source_quote": "文章中提到该框架的原文片段"
@@ -235,6 +237,8 @@ class DiscoverSkill:
                 "keywords": framework.get("keywords", []),
                 "visual_elements": framework.get("visual_elements", []),
                 "use_when": framework.get("use_when"),
+                "canonical_chart": framework.get("canonical_chart"),
+                "suggested_charts": framework.get("suggested_charts", []),
                 "discovered_at": datetime.now().isoformat(),
                 "source_quote": framework.get("source_quote"),
                 "confidence": confidence

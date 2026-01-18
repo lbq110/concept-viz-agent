@@ -21,3 +21,7 @@ use_when: 当AI代理具有潜在风险，需要对其行为进行严格控制�
 visual_elements:
 - Traffic light system
 - Firewall diagram
+canonical_chart: pyramid
+suggested_charts:
+- comparison
+- flowchart

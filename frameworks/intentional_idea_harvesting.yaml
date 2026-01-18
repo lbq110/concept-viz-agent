@@ -1,0 +1,27 @@
+canonical_chart: flowchart
+confidence: 0.85
+description: 一种主动的信息获取策略：不只是被动消费，而是带着“寻找值得重写的观点”的意图去阅读或聆听，并立即将其捕捉和重新表述。
+description_en: An active information consumption strategy where one listens or reads
+  with the specific intent of finding ideas worth rewriting, then capturing and reshaping
+  them in one's own words.
+discovered_at: '2026-01-17T21:57:11.996625'
+keywords:
+- active listening
+- capture
+- reformulation
+- hunting
+- insight
+name: 意向性思想狩猎 (Intentional Idea Harvesting)
+name_en: Intentional Idea Harvesting
+origin: Dan Koe
+source_quote: When you 'hunt' for an idea, you aren't just letting the information
+  go in one ear and out the other. You are listening intently for an idea that you
+  wish you wrote.
+suggested_charts:
+- network
+- process
+use_when: 面对海量信息感到过载，或需要为写作积累高质量素材时。
+visual_elements:
+- sieve
+- magnifying glass
+- collector's box

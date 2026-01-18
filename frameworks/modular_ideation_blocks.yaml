@@ -1,0 +1,25 @@
+canonical_chart: matrix
+confidence: 0.85
+description: 将抽象的思想拆解为可重复使用的修辞/逻辑模块（如痛点、案例、统计、比喻等），以便在表达时快速组合。
+description_en: A method of decomposing abstract thoughts into predictable, modular
+  building blocks like pain points, metaphors, and quotes to facilitate structured
+  articulation.
+discovered_at: '2026-01-17T21:29:09.739751'
+keywords:
+- legos
+- building blocks
+- rhetorical devices
+- composition
+name: 思想积木 (Idea Legos)
+name_en: Modular Ideation Blocks
+origin: 写作方法论 / Dan Koe
+source_quote: writing is like legos with ideas, and ideas come in predictable forms.
+  If you understand those forms, you can guide your mind to brainstorming what to
+  write next.
+suggested_charts:
+- flowchart
+- network
+use_when: 在面对“白纸压力”或需要结构化构建长篇内容/演讲稿时。
+visual_elements:
+- modular blocks
+- components

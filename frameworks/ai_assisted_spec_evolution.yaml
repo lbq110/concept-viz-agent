@@ -30,3 +30,7 @@ use_when: 当需要快速迭代软件规范，并希望利用AI的能力辅助�
 visual_elements:
 - Continuous Integration/Continuous Delivery (CI/CD) pipeline
 - Feedback loop diagram
+canonical_chart: cycle
+suggested_charts:
+- flowchart
+- timeline

@@ -1,0 +1,26 @@
+canonical_chart: pyramid
+confidence: 0.95
+description: 一种将结构化叙事、跨学科类比和专有解决方案结合的高级内容创作框架，通过“问题放大-领域合成-独特方案”三个阶段建立权威感。
+description_en: 'An advanced content structure that combines structured narrative,
+  cross-domain analogies, and proprietary solutions to build authority through a 3-stage
+  process: Problem/Amplify, Cross-Domain Synthesis, and Unique Solution.'
+discovered_at: '2026-01-17T22:05:56.740876'
+keywords:
+- structure
+- content stack
+- bridge
+- authority
+name: 综合表达架构
+name_en: Synthetical Articulation Architecture
+origin: Dan Koe / 内容创作领域
+source_quote: Problem and amplify – your introduction... Cross-domain synthesis –
+  note patterns or concepts from your other interests... Unique process or solution
+  – give a list of ideas or steps that best solve the problem.
+suggested_charts:
+- flowchart
+- layered list
+use_when: 编写深度文章、长视频脚本或进行深度主题演讲时
+visual_elements:
+- stacked layers
+- bridge between domains
+- convergence point

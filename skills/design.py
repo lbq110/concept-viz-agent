@@ -20,15 +20,22 @@ DESIGN_PROMPT = '''你是一位专业的技术文档设计师，擅长创建 Int
 
 关键特征：
 1. **扁平2D图形** - 干净的线条画，不是3D渲染
-2. **解释性文本框** - 每张图必须有2-4个文本框解释概念
+2. **解释性文本框** - 每张图必须有3-5个文本框解释概念，包含文章原文的关键观点
 3. **分栏布局** - 图在左/中，文字在右/下
 4. **底部总结** - "KEY QUOTE:" 框包含核心洞察
+5. **丰富的文章内容** - 图片中要包含足够多与原文相关的信息（关键词、观点、例子等）
 
 **统一样式规范：**
 {style_prefix}
 
 **可用图表类型：**
 {chart_types}
+
+**⚠️ 图表选择优先级（重要）：**
+为每个概念选择 chart_type 时，请按以下优先级：
+1. **首选**：使用映射结果中的 `recommended_chart` 字段（如果有）
+2. **备选**：如果 recommended_chart 不适合内容，从 `alternative_charts` 中选择
+3. **自由选择**：只有在没有推荐或推荐不适合时，才从完整图表库自由选择
 
 **输入的映射结果：**
 ```json
@@ -49,11 +56,13 @@ DESIGN_PROMPT = '''你是一位专业的技术文档设计师，擅长创建 Int
       "layout": "split|center|comparison",
       "visual_elements": ["元素1", "元素2"],
       "text_boxes": [
-        {{"label": "Definition:", "content": "概念定义"}},
-        {{"label": "KEY QUOTE:", "content": "核心引文"}}
+        {{"label": "DEFINITION 定义:", "content": "概念定义（来自原文）"}},
+        {{"label": "KEY INSIGHT 核心洞察:", "content": "来自映射框架的insight"}},
+        {{"label": "EXAMPLE 案例:", "content": "原文提到的具体例子"}},
+        {{"label": "KEY QUOTE 关键引文:", "content": "核心引文（来自原文）"}}
       ],
       "key_quote": "关键引文（中文）",
-      "image_prompt": "完整的图像生成提示词（200-400词）"
+      "image_prompt": "完整的图像生成提示词（300-500词，必须包含3-5个文本框内容）"
     }}
   ]
 }}
@@ -69,29 +78,33 @@ DESIGN_PROMPT = '''你是一位专业的技术文档设计师，擅长创建 Int
 **必须包含的视觉丰富元素：**
 1. **纸张材质**："aged blueprint paper with subtle texture and light creases"
 2. **背景图案**："faded thematic background pattern related to [概念]"（如电路图、齿轮、流程图等，要与主题呼应）
-3. **角落装饰**：
-   - 左上/右上："technical stamps or watermarks"
-   - 左下："angle reference diagrams (45° ANGLE, measurement lines)"
-   - 右下："professional title block with PROJECT, DRAWING NO, SCALE, REV"
-4. **尺寸标注**："dimension lines with measurements (1200mm, 500mm, etc.)"
-5. **双语标签**："bilingual labels (English term + Chinese translation)"
+3. **双语标签**："bilingual labels (English term + Chinese translation)"
+4. **文章内容标注**：必须包含3-5个与原文直接相关的文本框，内容来自：
+   - 原文的核心观点或定义
+   - 原文提到的例子或案例
+   - 原文的关键引文
+   - 映射框架的insight解释
+
+**⚠️ 不要包含以下元素：**
+- 右下角的 title block / 标题栏
+- 右上角的 stamps / watermarks / 技术标签
+- 任何尺寸标注或测量线
 
 **结构要求：**
 1. 以 "Technical blueprint infographic." 开头
 2. 标题格式："Title: '[中文标题]' in dark maroon ALL CAPS in brackets, with English subtitle below"
 3. 描述主图（2D或等轴测3D技术插图）
 4. 描述背景图案（与主题相关的淡化图案）
-5. 描述角落装饰元素
-6. 包含 "Aged cream blueprint paper (#F5F0E1) with subtle texture and grid"
-7. 包含尺寸标注和双语标签
-8. **必须包含中文质量要求：**
+5. 包含 "Aged cream blueprint paper (#F5F0E1) with subtle texture and grid"
+6. **必须包含3-5个文本框**，内容直接来自原文的观点、例子或引文
+7. **必须包含中文质量要求：**
    - "All text in Simplified Chinese (简体中文)"
    - "Chinese characters must be crystal clear, perfectly formed"
-9. **必须以以下内容结尾：**
-   "Professional title block in bottom right corner. 4K ultra-high resolution. Technical blueprint aesthetic."
+8. **必须以以下内容结尾：**
+   "Clean corners with no title blocks or stamps. 4K ultra-high resolution. Technical blueprint aesthetic."
 
-**示例 prompt（注意丰富的视觉元素）：**
-"Technical blueprint infographic. Title: '[必然性需求格栅]' in dark maroon ALL CAPS in brackets at top, with English subtitle 'THE ANANCIC LATTICE OF SPECIFICATION' below. Main diagram: isometric 3D technical illustration of an interlocking lattice structure made of teal steel beams and brown wooden connectors, representing structured requirements. Detailed dimension lines show measurements (1200mm, 500mm, 300mm). Bilingual callout labels point to key parts: 'STRUCTURAL CONSTRAINTS 结构约束', 'LOGIC FLOW 逻辑导向', 'CORE DOMAIN 核心领域'. Background: aged cream blueprint paper (#F5F0E1) with subtle texture and light creases. Faded flowchart patterns in background related to process logic. Corner decorations: top-right has technical stamp, bottom-left has 45° angle reference diagram with measurements, bottom-right has professional title block (PROJECT: ANANCIC LATTICE, DRAWING NO: AL-SPEC-001, SCALE: 1:10). Colors: teal #2F337, warm brown #8B7355, maroon titles. All text in Simplified Chinese (简体中文). Chinese characters must be crystal clear, perfectly formed. Professional title block in bottom right corner. 4K ultra-high resolution. Technical blueprint aesthetic."
+**示例 prompt（注意丰富的文章内容和视觉元素）：**
+"Technical blueprint infographic. Title: '[必然性需求格栅]' in dark maroon ALL CAPS in brackets at top, with English subtitle 'THE ANANCIC LATTICE OF SPECIFICATION' below. Main diagram: isometric 3D technical illustration of an interlocking lattice structure made of teal steel beams and brown wooden connectors, representing structured requirements. Multiple text boxes with article content: Box 1 - 'DEFINITION 定义: 通过规则和约束实现控制', Box 2 - 'KEY INSIGHT 核心洞察: 硬性规则确保一致性但牺牲灵活性', Box 3 - 'EXAMPLE 案例: 代码规范如同建筑蓝图', Box 4 - 'KEY QUOTE 关键引文: 约束是自由的基础'. Bilingual callout labels point to key parts: 'STRUCTURAL CONSTRAINTS 结构约束', 'LOGIC FLOW 逻辑导向', 'CORE DOMAIN 核心领域'. Background: aged cream blueprint paper (#F5F0E1) with subtle texture and light creases. Faded flowchart patterns in background related to process logic. Colors: teal #2F337, warm brown #8B7355, maroon titles. All text in Simplified Chinese (简体中文). Chinese characters must be crystal clear, perfectly formed. Clean corners with no title blocks or stamps. 4K ultra-high resolution. Technical blueprint aesthetic."
 
 请直接输出JSON，不要有任何其他文字。
 '''

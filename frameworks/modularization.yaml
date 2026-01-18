@@ -21,3 +21,7 @@ visual_elements:
 - 流程图
 - 分组
 - 独立模块图标
+canonical_chart: network
+suggested_charts:
+- flowchart
+- pyramid

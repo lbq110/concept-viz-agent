@@ -1,0 +1,27 @@
+canonical_chart: cycle
+confidence: 0.9
+description: 通过像音乐家重复特定的“音色”或“风格”一样，不断重复和微调核心观点，从而在受众心中建立独特的认知标签，并通过反复表达实现思想的精炼。
+description_en: By repeating and refining core ideas like a musician maintains a specific
+  'sound', one builds a recognizable intellectual brand while achieving maximum clarity
+  through iterative expression.
+discovered_at: '2026-01-17T21:57:11.995732'
+keywords:
+- repetition
+- refinement
+- style
+- branding
+- consistency
+name: 知识风格一致性 (Intellectual Style Consistency)
+name_en: Intellectual Style Consistency
+origin: Dan Koe / Musician Analogy
+source_quote: You need to write or speak, thousands of times, until your best ideas
+  are obvious. By nature, you must repeat yourself, because the most important ideas
+  deserve to be repeated, and how else are you going to refine them?
+suggested_charts:
+- attractor
+- feedback_loop
+use_when: 需要在多个场合（如播客、演讲、社交媒体）建立个人权威和一致的品牌印象时。
+visual_elements:
+- harmonic wave
+- recursive loop
+- vibration pattern

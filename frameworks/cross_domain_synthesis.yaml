@@ -1,0 +1,25 @@
+canonical_chart: venn
+confidence: 0.9
+description: 借用不同学科的概念或模式来解释当前问题，通过模式识别创造独特的洞察力。
+description_en: Noting patterns or concepts from diverse interests and applying them
+  to support an argument in a different field.
+discovered_at: '2026-01-17T17:35:54.315455'
+keywords:
+- interdisciplinary
+- pattern recognition
+- analogy
+- consilience
+- entropy
+name: 跨领域合成 (Cross-Domain Synthesis)
+name_en: Cross-Domain Synthesis
+origin: 通才思维 (Polymathy) / 演化认识论
+source_quote: Cross-domain synthesis – note patterns or concepts from your other interests
+  that help support your argument.
+suggested_charts:
+- network
+- matrix
+use_when: 需要从独特的视角切入一个常见话题，或解释复杂系统现象时。
+visual_elements:
+- overlapping circles
+- intersecting paths
+- molecular fusion

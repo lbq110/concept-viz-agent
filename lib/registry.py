@@ -142,8 +142,47 @@ class Registry:
             lines.append(f"- 关键词: {', '.join(f.get('keywords', []))}")
             lines.append(f"- 视觉元素: {', '.join(f.get('visual_elements', []))}")
             lines.append(f"- 适用场景: {f.get('use_when', 'N/A')}")
+            if f.get('canonical_chart'):
+                suggested = f.get('suggested_charts', [])
+                suggested_str = f", 备选: {', '.join(suggested)}" if suggested else ""
+                lines.append(f"- 推荐图表: {f.get('canonical_chart')}{suggested_str}")
             lines.append("")
         return "\n".join(lines)
+
+    def get_framework_chart_recommendation(self, framework_id: str) -> dict:
+        """
+        获取框架的图表推荐
+
+        Args:
+            framework_id: 框架ID
+
+        Returns:
+            包含图表推荐的字典:
+            - canonical_chart: 首选图表类型
+            - suggested_charts: 备选图表列表
+            - all_recommendations: 所有推荐（首选+备选）
+        """
+        framework = self.get_framework(framework_id)
+        if not framework:
+            return {
+                "canonical_chart": None,
+                "suggested_charts": [],
+                "all_recommendations": []
+            }
+
+        canonical = framework.get("canonical_chart")
+        suggested = framework.get("suggested_charts", [])
+
+        all_recommendations = []
+        if canonical:
+            all_recommendations.append(canonical)
+        all_recommendations.extend([c for c in suggested if c not in all_recommendations])
+
+        return {
+            "canonical_chart": canonical,
+            "suggested_charts": suggested,
+            "all_recommendations": all_recommendations
+        }
 
     # =========================================================================
     # 图表类型相关方法

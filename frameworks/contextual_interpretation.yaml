@@ -19,3 +19,7 @@ use_when: 在自然语言处理任务中，需要理解用户的真实意图，�
 visual_elements:
 - decision tree
 - mind map
+canonical_chart: flowchart
+suggested_charts:
+- network
+- venn
