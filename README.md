@@ -82,7 +82,7 @@ claude
 
 ## 命令参考
 
-### 核心技能
+### 核心技能（软编排型）
 
 | 命令 | 功能 |
 |------|------|
@@ -90,10 +90,20 @@ claude
 | `/pipeline <文章> --no-learn` | 跳过框架学习，仅生成图片 |
 | `/pipeline <文章> --style=blueprint` | 指定样式，跳过交互选择 |
 | `/discover <文章>` | 专注于框架发现，扩充知识库 |
-| `/learn <示例文件夹>` | 🆕 从示例作品反向学习frameworks、charts、styles |
-| `/analyze <文章>` | 分析文章，提取核心概念 |
+| `/learn <示例文件夹>` | 从示例作品反向学习frameworks、charts、styles |
+
+### 能力包型 Skills（单步骤）
+
+| 命令 | 功能 |
+|------|------|
+| `/analyze <文章>` | 🆕 单独分析文章，提取核心概念 |
+| `/design <映射结果>` | 🆕 单独生成图像提示词 |
+
+### 内部步骤（在 pipeline 中调用）
+
+| 命令 | 功能 |
+|------|------|
 | `/map` | 将概念映射到理论框架 |
-| `/design` | 生成可视化设计方案 |
 | `/generate` | 生成图像 |
 
 ### 知识管理
@@ -215,10 +225,22 @@ concept-viz-agent/
 │   └── plugin.json          # 插件清单
 │
 ├── skills/                  # 📂 Claude Code Skills
-│   ├── pipeline/SKILL.md    # /polymathic-plugin:pipeline
-│   ├── discover/SKILL.md    # /polymathic-plugin:discover
-│   ├── learn/SKILL.md       # /polymathic-plugin:learn
-│   └── frameworks/SKILL.md  # /polymathic-plugin:frameworks
+│   ├── pipeline/            # 完整流水线
+│   │   ├── SKILL.md         # 精简触发描述
+│   │   └── INSTRUCTIONS.md  # 详细执行指令
+│   ├── discover/            # 框架发现
+│   │   ├── SKILL.md
+│   │   └── INSTRUCTIONS.md
+│   ├── learn/               # 从示例学习
+│   │   ├── SKILL.md
+│   │   └── INSTRUCTIONS.md
+│   ├── frameworks/          # 框架管理
+│   │   ├── SKILL.md
+│   │   └── INSTRUCTIONS.md
+│   ├── analyze/             # 🆕 能力包：单独分析
+│   │   └── SKILL.md
+│   └── design-prompt/       # 🆕 能力包：单独设计
+│       └── SKILL.md
 │
 ├── core/                    # 📂 Python 核心逻辑
 │   ├── analyze.py           # /analyze 分析文章
@@ -252,6 +274,7 @@ concept-viz-agent/
         ├── 04_generate.json
         ├── prompts.md
         ├── report.md
+        ├── run_stats.json   # 🆕 运行统计
         └── images/
 ```
 
@@ -280,6 +303,34 @@ concept-viz-agent/
 | `creative` | 创意艺术风格 | 艺术感强 |
 
 > ⚠️ **注意**：默认样式已锁定，`/learn` 只会创建新样式，不会覆盖默认样式
+
+### 运行统计示例
+
+每次运行 `/pipeline` 会生成 `run_stats.json`：
+
+```json
+{
+  "run_id": "run_20250119_143000",
+  "started_at": "2025-01-19T14:30:00",
+  "finished_at": "2025-01-19T14:32:15",
+  "duration_seconds": 135,
+  "success": true,
+  "steps": {
+    "discover": {"status": "success", "duration_seconds": 12.3, "new_frameworks": 2},
+    "analyze": {"status": "success", "duration_seconds": 8.1, "concepts_found": 5},
+    "map": {"status": "success", "duration_seconds": 15.2, "mappings": 3},
+    "design": {"status": "success", "duration_seconds": 20.5, "designs": 3},
+    "generate": {"status": "success", "duration_seconds": 78.9, "images_generated": 3}
+  },
+  "summary": {
+    "total_steps": 5,
+    "successful_steps": 5,
+    "failed_steps": 0,
+    "new_frameworks_learned": 2,
+    "images_generated": 3
+  }
+}
+```
 
 ### 框架学习示例
 

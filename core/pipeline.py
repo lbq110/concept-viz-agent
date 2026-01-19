@@ -50,6 +50,78 @@ class PipelineSkill:
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.generate = GenerateSkill(str(self.output_dir / "images"), style=self.style)
 
+        # 初始化运行统计
+        self.stats = {
+            "run_id": f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+            "started_at": None,
+            "finished_at": None,
+            "duration_seconds": None,
+            "success": False,
+            "style": self.style,
+            "auto_learn": auto_learn,
+            "steps": {},
+            "errors": [],
+            "summary": {}
+        }
+
+    def _run_step(self, step_name: str, func, *args, **kwargs) -> dict:
+        """带统计的步骤执行"""
+        start_time = time.time()
+        self.stats["steps"][step_name] = {
+            "status": "running",
+            "started_at": datetime.now().isoformat()
+        }
+
+        try:
+            result = func(*args, **kwargs)
+            duration = time.time() - start_time
+            self.stats["steps"][step_name].update({
+                "status": "success",
+                "duration_seconds": round(duration, 2),
+                "finished_at": datetime.now().isoformat()
+            })
+            return result
+        except Exception as e:
+            duration = time.time() - start_time
+            error_msg = str(e)
+            self.stats["steps"][step_name].update({
+                "status": "failed",
+                "duration_seconds": round(duration, 2),
+                "finished_at": datetime.now().isoformat(),
+                "error": error_msg
+            })
+            self.stats["errors"].append({
+                "step": step_name,
+                "error": error_msg,
+                "timestamp": datetime.now().isoformat()
+            })
+            raise
+
+    def _save_stats(self):
+        """保存运行统计到 run_stats.json"""
+        # 计算汇总
+        steps = self.stats["steps"]
+        successful = sum(1 for s in steps.values() if s.get("status") == "success")
+        failed = sum(1 for s in steps.values() if s.get("status") == "failed")
+
+        self.stats["summary"] = {
+            "total_steps": len(steps),
+            "successful_steps": successful,
+            "failed_steps": failed,
+            "new_frameworks_learned": self.stats.get("_new_frameworks", 0),
+            "concepts_found": self.stats.get("_concepts_found", 0),
+            "images_generated": self.stats.get("_images_generated", 0)
+        }
+
+        # 保存到文件
+        stats_path = self.output_dir / "run_stats.json"
+        with open(stats_path, "w", encoding="utf-8") as f:
+            # 移除内部临时字段
+            stats_to_save = {k: v for k, v in self.stats.items() if not k.startswith("_")}
+            json.dump(stats_to_save, f, ensure_ascii=False, indent=2, default=str)
+
+        return stats_path
+
     def _select_style_interactive(self, styles: dict, default: str) -> str:
         """交互式选择视觉风格"""
         print("\n" + "=" * 50)
@@ -96,6 +168,10 @@ class PipelineSkill:
         Returns:
             完整结果字典
         """
+        # 记录开始时间
+        self.stats["started_at"] = datetime.now().isoformat()
+        start_time = time.time()
+
         results = {
             "article_path": article_path,
             "output_dir": str(self.output_dir),
@@ -115,124 +191,157 @@ class PipelineSkill:
         print(f"自动学习: {'✓ 开启' if self.auto_learn else '✗ 关闭'}")
         print("=" * 60)
 
-        # 读取文章
-        article_file = Path(article_path)
-        if not article_file.exists():
-            print(f"✗ 文件不存在: {article_path}")
-            return results
+        try:
+            # 读取文章
+            article_file = Path(article_path)
+            if not article_file.exists():
+                print(f"✗ 文件不存在: {article_path}")
+                self.stats["errors"].append({"step": "init", "error": f"文件不存在: {article_path}"})
+                return results
 
-        article = article_file.read_text(encoding='utf-8')
-        print(f"✓ 读取文章: {len(article)} 字符")
+            article = article_file.read_text(encoding='utf-8')
+            print(f"✓ 读取文章: {len(article)} 字符")
 
-        # Step 0: 框架发现与学习（可选但推荐）
-        if self.auto_learn:
+            # Step 0: 框架发现与学习（可选但推荐）
+            if self.auto_learn:
+                print("\n" + "-" * 40)
+                print(f"STEP 0/{total_steps}: 🎓 框架发现与学习")
+                print("-" * 40)
+
+                discover_result = self._run_step("discover", self.discover.run, article)
+                results["learning"] = discover_result
+
+                if "error" not in discover_result:
+                    # 保存学习结果
+                    with open(self.output_dir / "00_discover.json", "w", encoding="utf-8") as f:
+                        json.dump(discover_result, f, ensure_ascii=False, indent=2)
+
+                    summary = discover_result.get("summary", {})
+                    new_added = summary.get("new_added", 0)
+                    self.stats["_new_frameworks"] = new_added
+                    self.stats["steps"]["discover"]["new_frameworks"] = new_added
+
+                    if new_added > 0:
+                        print(f"🎉 框架库已扩充！新增 {new_added} 个框架")
+
+            # Step 1: 分析
             print("\n" + "-" * 40)
-            print(f"STEP 0/{total_steps}: 🎓 框架发现与学习")
+            print(f"STEP 1/{total_steps}: 分析文章")
             print("-" * 40)
 
-            discover_result = self.discover.run(article)
-            results["learning"] = discover_result
+            analyze_result = self._run_step("analyze", self.analyze.run, article)
+            results["steps"]["analyze"] = analyze_result
 
-            if "error" not in discover_result:
-                # 保存学习结果
-                with open(self.output_dir / "00_discover.json", "w", encoding="utf-8") as f:
-                    json.dump(discover_result, f, ensure_ascii=False, indent=2)
+            if "error" in analyze_result:
+                print(f"✗ 分析失败: {analyze_result['error']}")
+                return results
 
-                summary = discover_result.get("summary", {})
-                if summary.get("new_added", 0) > 0:
-                    print(f"🎉 框架库已扩充！新增 {summary['new_added']} 个框架")
+            # 记录概念数量
+            concepts_count = len(analyze_result.get("key_concepts", []))
+            self.stats["_concepts_found"] = concepts_count
+            self.stats["steps"]["analyze"]["concepts_found"] = concepts_count
 
-        # Step 1: 分析
-        print("\n" + "-" * 40)
-        print(f"STEP 1/{total_steps}: 分析文章")
-        print("-" * 40)
+            # 保存分析结果
+            with open(self.output_dir / "01_analyze.json", "w", encoding="utf-8") as f:
+                json.dump(analyze_result, f, ensure_ascii=False, indent=2)
 
-        analyze_result = self.analyze.run(article)
-        results["steps"]["analyze"] = analyze_result
-
-        if "error" in analyze_result:
-            print(f"✗ 分析失败: {analyze_result['error']}")
-            return results
-
-        # 保存分析结果
-        with open(self.output_dir / "01_analyze.json", "w", encoding="utf-8") as f:
-            json.dump(analyze_result, f, ensure_ascii=False, indent=2)
-
-        # Step 2: 理论框架映射
-        print("\n" + "-" * 40)
-        print(f"STEP 2/{total_steps}: 理论框架映射")
-        print("-" * 40)
-
-        map_result = self.map_framework.run(analyze_result)
-        results["steps"]["map"] = map_result
-
-        if "error" in map_result:
-            print(f"✗ 映射失败: {map_result['error']}")
-            return results
-
-        # 保存映射结果
-        with open(self.output_dir / "02_map.json", "w", encoding="utf-8") as f:
-            json.dump(map_result, f, ensure_ascii=False, indent=2)
-
-        # Step 3: 可视化设计
-        print("\n" + "-" * 40)
-        print(f"STEP 3/{total_steps}: 可视化设计")
-        print("-" * 40)
-
-        design_result = self.design.run(map_result)
-        results["steps"]["design"] = design_result
-
-        if "error" in design_result:
-            print(f"✗ 设计失败: {design_result['error']}")
-            return results
-
-        # 保存设计结果
-        with open(self.output_dir / "03_design.json", "w", encoding="utf-8") as f:
-            json.dump(design_result, f, ensure_ascii=False, indent=2)
-
-        # 保存提示词到markdown
-        prompts_md = self._format_prompts_markdown(design_result)
-        with open(self.output_dir / "prompts.md", "w", encoding="utf-8") as f:
-            f.write(prompts_md)
-
-        # Step 4: 生成图像
-        if generate_images:
+            # Step 2: 理论框架映射
             print("\n" + "-" * 40)
-            print(f"STEP 4/{total_steps}: 生成图像")
+            print(f"STEP 2/{total_steps}: 理论框架映射")
             print("-" * 40)
 
-            generate_result = self.generate.run_batch(design_result)
-            results["steps"]["generate"] = generate_result
+            map_result = self._run_step("map", self.map_framework.run, analyze_result)
+            results["steps"]["map"] = map_result
 
-            # 保存生成结果
-            with open(self.output_dir / "04_generate.json", "w", encoding="utf-8") as f:
-                json.dump(generate_result, f, ensure_ascii=False, indent=2, default=str)
+            if "error" in map_result:
+                print(f"✗ 映射失败: {map_result['error']}")
+                return results
 
-        else:
+            # 记录映射数量
+            mappings_count = len(map_result.get("mappings", []))
+            self.stats["steps"]["map"]["mappings"] = mappings_count
+
+            # 保存映射结果
+            with open(self.output_dir / "02_map.json", "w", encoding="utf-8") as f:
+                json.dump(map_result, f, ensure_ascii=False, indent=2)
+
+            # Step 3: 可视化设计
             print("\n" + "-" * 40)
-            print(f"STEP 4/{total_steps}: 跳过图像生成")
+            print(f"STEP 3/{total_steps}: 可视化设计")
             print("-" * 40)
-            print("提示词已保存到 prompts.md")
 
-        # 生成报告
-        report = self._generate_report(results)
-        with open(self.output_dir / "report.md", "w", encoding="utf-8") as f:
-            f.write(report)
+            design_result = self._run_step("design", self.design.run, map_result)
+            results["steps"]["design"] = design_result
 
-        results["success"] = True
+            if "error" in design_result:
+                print(f"✗ 设计失败: {design_result['error']}")
+                return results
 
-        print("\n" + "=" * 60)
-        print("✓ 流水线完成!")
-        print(f"输出目录: {self.output_dir}")
+            # 记录设计数量
+            designs_count = len(design_result.get("designs", []))
+            self.stats["steps"]["design"]["designs"] = designs_count
 
-        # 显示学习成果
-        if self.auto_learn and "summary" in results.get("learning", {}):
-            summary = results["learning"]["summary"]
-            print(f"\n📚 学习成果:")
-            print(f"   新增框架: {summary.get('new_added', 0)}")
-            print(f"   框架库总数: {summary.get('total_frameworks', 'N/A')}")
+            # 保存设计结果
+            with open(self.output_dir / "03_design.json", "w", encoding="utf-8") as f:
+                json.dump(design_result, f, ensure_ascii=False, indent=2)
 
-        print("=" * 60)
+            # 保存提示词到markdown
+            prompts_md = self._format_prompts_markdown(design_result)
+            with open(self.output_dir / "prompts.md", "w", encoding="utf-8") as f:
+                f.write(prompts_md)
+
+            # Step 4: 生成图像
+            if generate_images:
+                print("\n" + "-" * 40)
+                print(f"STEP 4/{total_steps}: 生成图像")
+                print("-" * 40)
+
+                generate_result = self._run_step("generate", self.generate.run_batch, design_result)
+                results["steps"]["generate"] = generate_result
+
+                # 记录图像数量
+                images_count = sum(1 for r in generate_result if r.get("success"))
+                self.stats["_images_generated"] = images_count
+                self.stats["steps"]["generate"]["images_generated"] = images_count
+
+                # 保存生成结果
+                with open(self.output_dir / "04_generate.json", "w", encoding="utf-8") as f:
+                    json.dump(generate_result, f, ensure_ascii=False, indent=2, default=str)
+
+            else:
+                print("\n" + "-" * 40)
+                print(f"STEP 4/{total_steps}: 跳过图像生成")
+                print("-" * 40)
+                print("提示词已保存到 prompts.md")
+                self.stats["steps"]["generate"] = {"status": "skipped"}
+
+            # 生成报告
+            report = self._generate_report(results)
+            with open(self.output_dir / "report.md", "w", encoding="utf-8") as f:
+                f.write(report)
+
+            results["success"] = True
+            self.stats["success"] = True
+
+            print("\n" + "=" * 60)
+            print("✓ 流水线完成!")
+            print(f"输出目录: {self.output_dir}")
+
+            # 显示学习成果
+            if self.auto_learn and "summary" in results.get("learning", {}):
+                summary = results["learning"]["summary"]
+                print(f"\n📚 学习成果:")
+                print(f"   新增框架: {summary.get('new_added', 0)}")
+                print(f"   框架库总数: {summary.get('total_frameworks', 'N/A')}")
+
+            print("=" * 60)
+
+        finally:
+            # 记录结束时间并保存统计
+            self.stats["finished_at"] = datetime.now().isoformat()
+            self.stats["duration_seconds"] = round(time.time() - start_time, 2)
+            stats_path = self._save_stats()
+            print(f"\n📊 运行统计已保存: {stats_path}")
 
         return results
 

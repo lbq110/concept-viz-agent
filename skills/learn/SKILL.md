@@ -7,29 +7,25 @@ user-invocable: true
 
 # Learn from Examples
 
-## 功能
-从已有的示例作品中反向学习：
-1. 用 AI Vision 分析图像
-2. 提取候选框架、图表类型、风格
-3. 闭环验证（可选）
-4. 保存到知识库
+从示例作品中反向学习框架、图表类型和视觉风格。
 
-## 使用方法
+## 快速使用
 
 ```bash
 cd ${CLAUDE_PLUGIN_ROOT} && python agent.py "/learn $ARGUMENTS"
 ```
 
 ## 参数
-- 示例文件夹路径（必需）
+- 第一个参数：示例文件夹路径（必需）
 - `--no-verify`：跳过验证直接保存
-- `--threshold=70`：验证通过分数阈值
+- `--threshold=70`：验证阈值
 
 ## 示例文件夹结构
 ```
 example_folder/
 ├── article.md
 └── images/
-    ├── image_1.jpg
-    └── image_2.jpg
+    └── *.jpg / *.png
 ```
+
+详细说明见 [INSTRUCTIONS.md](./INSTRUCTIONS.md)

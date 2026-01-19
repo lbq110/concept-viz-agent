@@ -7,29 +7,20 @@ user-invocable: true
 
 # Concept Visualization Pipeline
 
-## 功能
-将文章转化为科学风格的概念可视化图，包含：
-1. 框架发现 - 自动识别文章中的理论框架
-2. 文章分析 - 提取核心概念和关系
-3. 框架映射 - 将概念映射到理论框架
-4. 可视化设计 - 生成图像提示词
-5. 图像生成 - 调用 AI 生成 4K 概念图
+一键将文章转化为 4K 科学风格概念图。
 
-## 使用方法
-
-运行以下命令：
+## 快速使用
 
 ```bash
 cd ${CLAUDE_PLUGIN_ROOT} && python agent.py "/pipeline $ARGUMENTS --style=blueprint"
 ```
 
-## 参数说明
+## 参数
 - 第一个参数：文章文件路径（必需）
-- `--style=xxx`：视觉风格（可选，默认 blueprint）
-- `--no-learn`：跳过框架学习（可选）
+- `--style=xxx`：视觉风格（blueprint/modern/academic/creative）
+- `--no-learn`：跳过框架学习
 
 ## 输出
-- `output/run_时间戳/` 目录，包含：
-  - JSON 中间结果
-  - 生成的概念图（4K）
-  - prompts.md 和 report.md
+`output/run_时间戳/` 目录，包含 JSON 结果、概念图、报告。
+
+详细说明见 [INSTRUCTIONS.md](./INSTRUCTIONS.md)

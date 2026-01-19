@@ -7,28 +7,22 @@ user-invocable: true
 
 # Framework Management
 
-## 功能
-管理理论框架知识库，支持：
-- 列出所有框架
-- 查看框架详情
-- 交互式添加新框架
+管理理论框架知识库。
 
-## 使用方法
+## 快速使用
 
-### 列出所有框架
 ```bash
+# 列出所有框架
 cd ${CLAUDE_PLUGIN_ROOT} && python agent.py "/frameworks"
-```
 
-### 查看框架详情
-```bash
+# 查看框架详情
 cd ${CLAUDE_PLUGIN_ROOT} && python agent.py "/frameworks show <framework_id>"
-```
 
-### 添加新框架
-```bash
+# 添加新框架
 cd ${CLAUDE_PLUGIN_ROOT} && python agent.py "/frameworks add"
 ```
 
-## 框架存储位置
-- `frameworks/` 目录下的 YAML 文件
+## 框架存储
+`frameworks/` 目录下的 YAML 文件。
+
+详细说明见 [INSTRUCTIONS.md](./INSTRUCTIONS.md)

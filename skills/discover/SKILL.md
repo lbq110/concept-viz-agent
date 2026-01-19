@@ -7,22 +7,19 @@ user-invocable: true
 
 # Framework Discovery
 
-## 功能
-分析文章，自动发现并学习新的理论框架，扩充框架知识库。
+分析文章，自动发现并学习新的理论框架，扩充知识库。
 
-识别范围：
-- 哲学概念（实用主义、涌现论等）
-- 科学方法论（演绎、归纳、溯因推理）
-- 系统论（反馈、吸引子、自组织）
-- 物理学概念（全息原理、量子纠错码）
-- 等等
-
-## 使用方法
+## 快速使用
 
 ```bash
 cd ${CLAUDE_PLUGIN_ROOT} && python agent.py "/discover $ARGUMENTS"
 ```
 
+## 参数
+- 第一个参数：文章文件路径（必需）
+- `--no-save`：只发现不保存
+
 ## 输出
-- 发现的新框架列表
-- 自动保存到 `frameworks/` 目录
+发现的框架自动保存到 `frameworks/` 目录。
+
+详细说明见 [INSTRUCTIONS.md](./INSTRUCTIONS.md)
