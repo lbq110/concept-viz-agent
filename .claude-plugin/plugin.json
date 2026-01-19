@@ -1,0 +1,10 @@
+{
+  "name": "polymathic-plugin",
+  "description": "海纳百川的博学家插件 - 将文章转化为科学风格概念图，自动学习理论框架",
+  "version": "1.0.0",
+  "author": {
+    "name": "Roger"
+  },
+  "keywords": ["visualization", "concept", "framework", "polymathic", "article"],
+  "skills": "./skills/"
+}
