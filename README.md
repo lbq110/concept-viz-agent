@@ -45,12 +45,28 @@ export GOOGLE_API_KEY="your-key"
 
 ### 使用
 
+**方式一：Python CLI**
+
 ```bash
 # 一键生成概念图（自动学习新框架）
 python agent.py /pipeline your_article.md
 
 # 交互模式
 python agent.py
+```
+
+**方式二：Claude Code 插件**
+
+```bash
+# 在项目目录启动 Claude Code
+cd concept-viz-agent
+claude
+
+# 使用插件命令
+/polymathic-plugin:pipeline your_article.md
+/polymathic-plugin:discover your_article.md
+/polymathic-plugin:learn ./examples
+/polymathic-plugin:frameworks
 ```
 
 ## Workflow
@@ -190,10 +206,28 @@ elements:
 
 ```
 concept-viz-agent/
-├── agent.py                 # 主入口
+├── agent.py                 # 主入口 (Python CLI)
 ├── config.py                # 配置文件
 ├── requirements.txt
 ├── README.md
+│
+├── .claude-plugin/          # 📂 Claude Code 插件配置
+│   └── plugin.json          # 插件清单
+│
+├── skills/                  # 📂 Claude Code Skills
+│   ├── pipeline/SKILL.md    # /polymathic-plugin:pipeline
+│   ├── discover/SKILL.md    # /polymathic-plugin:discover
+│   ├── learn/SKILL.md       # /polymathic-plugin:learn
+│   └── frameworks/SKILL.md  # /polymathic-plugin:frameworks
+│
+├── core/                    # 📂 Python 核心逻辑
+│   ├── analyze.py           # /analyze 分析文章
+│   ├── map_framework.py     # /map 框架映射
+│   ├── design.py            # /design 可视化设计
+│   ├── generate.py          # /generate 图像生成
+│   ├── discover.py          # /discover 框架发现
+│   ├── learn_example.py     # /learn 从示例学习
+│   └── pipeline.py          # /pipeline 完整流水线
 │
 ├── frameworks/              # 📂 可扩展理论框架
 │   ├── example_custom_framework.yaml
@@ -202,21 +236,12 @@ concept-viz-agent/
 ├── chart_types/             # 📂 可扩展图表类型
 │   └── example_custom_chart.yaml
 │
-├── visual_styles/           # 📂 可扩展视觉风格 (🆕)
+├── visual_styles/           # 📂 可扩展视觉风格
 │   └── ... (从示例学习的风格)
 │
 ├── lib/
 │   ├── api.py               # 多模型API客户端
 │   └── registry.py          # 开放式注册系统
-│
-├── skills/
-│   ├── analyze.py           # /analyze 分析文章
-│   ├── map_framework.py     # /map 框架映射
-│   ├── design.py            # /design 可视化设计
-│   ├── generate.py          # /generate 图像生成
-│   ├── discover.py          # /discover 框架发现
-│   ├── learn_example.py     # /learn 从示例学习 (🆕)
-│   └── pipeline.py          # /pipeline 完整流水线
 │
 └── output/                  # 输出目录
     └── run_YYYYMMDD_HHMMSS/
